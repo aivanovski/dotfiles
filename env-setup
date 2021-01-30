@@ -1,0 +1,228 @@
+#!/bin/bash
+
+help()
+{
+    echo "Environment setup helper"
+    echo ""
+    echo "Commands:"
+    echo "-h --help             print help"
+    echo ""
+    echo "Environment:"
+    echo "-d --dev              init dev environment variable"
+    echo "-o --home             init home environment variable"
+    echo ""
+    echo "Configs:"
+    echo "-b --bash             init .bashrc and .bash_profile"
+    echo "-v --vim              init .vimrc"
+    echo "-g --git              init .gitconfig"
+    echo "-i --i3wm             init i3/config and configs for i3status and polybar"
+    echo "-s --scripts          init scripts in ~/.local/bin"
+    echo "-t --other            init .dircolors.256"
+    echo "-x --xmonad           init Xmonad config"
+    echo "-m --multi-monitors   add 'xprofile-setup' script at '.xprofile', which controls system behavior in case of multimonitor setup."
+    echo "                      Behavior is determined by value of 'MON_ENV' varible defined in '.config/monitor-environment'."
+    echo "                      Possible values:"
+    echo "                          BUILT_IN - only built-in monitor will be active"
+    echo "                          EXTERNAL_OR_BUILT_IN - external monitor will be active, otherwise build-in monitor will be active"
+    echo "                          EXTEND_EXTERNAL - external and built-in monitors will be active, external will be set as primary"
+}
+
+initEnvironmentVariable()
+{
+    # create file "~/.config/environment"
+    environment=$1
+    echo -e "ENV=\"$environment\"" > "$HOME/.config/environment"
+}
+
+createLink()
+{
+    src=$1
+    dst=$2
+    successMessage="Successfully created link to: $PWD/$src"
+    errorMessage="Failed to create link to: $HOME/$src"
+
+    if [ -f "$HOME/$dst" ]; then
+        rm "$HOME/$dst" && ln -s "$PWD/$src" "$HOME/$dst" && echo "$successMessage" || echo "$errorMessage"
+    else
+        ln -s "$PWD/$src" "$HOME/$dst" && echo "$successMessage" || echo "$errorMessage"
+    fi
+}
+
+initBash()
+{
+    createLink ".bashrc" ".bashrc"
+    createLink ".bash_profile" ".bash_profile"
+}
+
+initVim()
+{
+    createLink ".vimrc" ".vimrc"
+    createLink ".ideavimrc" ".ideavimrc"
+}
+
+initGit()
+{
+    env=$(getEnvironmentVariable)
+
+    createLink "$env/.gitconfig" ".gitconfig"
+}
+
+initI3wm()
+{
+    env=$(getEnvironmentVariable)
+
+    # Create necessary dirs
+    createDirIfNeed ".config/i3"
+    createDirIfNeed ".config/i3status"
+    createDirIfNeed ".config/picom"
+    createDirIfNeed ".config/polybar"
+    rm -r "$HOME/.config/polybar/scripts"
+
+    # Create links to config files
+    createLink "$env/.config/i3/config" ".config/i3/config"
+    createLink "$env/.config/i3/bg-icescape.jpg" ".config/i3/bg-icescape.jpg"
+    createLink "$env/.config/i3/bg-mountains.jpg" ".config/i3/bg-mountains.jpg"
+
+    # i3status config
+    createLink "$env/.config/i3status/config" ".config/i3status/config"
+
+    # picom
+    createLink "$env/.config/picom/picom.conf" ".config/picom/picom.conf"
+
+    # polybar config
+    createLink "$env/.config/polybar/launch.sh" ".config/polybar/launch.sh"
+    createLink "$env/.config/polybar/config.ini" ".config/polybar/config.ini"
+
+    # polybar scripts
+    createLink "$env/.config/polybar/scripts" ".config/polybar/scripts"
+}
+
+initXmonad()
+{
+    env=$(getEnvironmentVariable)
+
+    # Create necessary dirs
+    createDirIfNeed ".xmonad"
+
+    # Create links to config files
+    createLink ".xmonad/xmonad.hs" ".xmonad/xmonad.hs"
+    createLink ".xmonad/xmobar.hs" ".xmonad/xmobar.hs"
+    createLink ".xmonad/get-volume.sh" ".xmonad/get-volume.sh"
+}
+
+createDirIfNeed()
+{
+    name=$1
+    if [ ! -d "$HOME/$name" ]; then
+        mkdir "$HOME/$name" || echo "Failed to create directory: $HOME/$name"
+    fi
+}
+
+copyOrOverwrite()
+{
+    src=$1
+    dst=$2
+
+    echo "Overwriting file: $src -> $dst"
+    cp -rf "$src" "$dst"
+}
+
+initOther()
+{
+    createLink ".dircolors.256" ".dircolors.256"
+}
+
+initScripts()
+{
+    env=$(getEnvironmentVariable)
+
+    # Create necessary dir
+    createDirIfNeed ".local/bin"
+
+    # Get list of script names and create links for them
+    files=$(ls "$PWD/.local/bin")
+    while read -r file
+    do
+        createLink ".local/bin/$file" ".local/bin/$file"
+    done <<< $(echo "$files")
+
+    # Skip environment scripts if there is no folder
+    [ ! -d "$PWD/$env/.local/bin" ] && return 0
+
+    # Get list of scripts in environment folder
+    envFiles=$(ls "$PWD/$env/.local/bin")
+    while read -r file
+    do
+        createLink "$env/.local/bin/$file" ".local/bin/$file"
+    done <<< $(echo "$envFiles")
+}
+
+getEnvironmentVariable()
+{
+    # read and return value of $ENV from environment file
+    errorMessage="Failed to determine environment variable ENV"
+    [ -f "$HOME/.config/environment" ] && grep "ENV" "$HOME/.config/environment" | cut -f2 -d"\"" || echo "$errorMessage"
+}
+
+initMultiMonitorControlScript()
+{
+    env=$(getEnvironmentVariable)
+
+    if [ -f "$env/.config/xprofile-setup" ]; then
+        createLink "$env/.config/xprofile-setup" ".config/xprofile-setup"
+
+        copyOrOverwrite "$env/.config/monitor-environment" "$HOME/.config/monitor-environment"
+        copyOrOverwrite "$env/.config/xprofile-variables" "$HOME/.config/xprofile-variables"
+    else
+        echo "Not implemented for $env environment"
+    fi
+}
+
+[[ "$1" == "" ]] && help
+
+while [ "$1" != "" ]; do
+    PARAM=`echo $1 | awk -F= '{print $1}'`
+    VALUE=`echo $1 | awk -F= '{print $2}'`
+    case $PARAM in
+        -h | --help)
+            help
+            exit
+            ;;
+        -d | --dev)
+            initEnvironmentVariable "dev"
+            ;;
+        -o | --home)
+            initEnvironmentVariable "home"
+            ;;
+        -b | --bash)
+            initBash
+            ;;
+        -v | --vim)
+            initVim
+            ;;
+        -g | --git)
+            initGit
+            ;;
+        -i | --i3wm)
+            initI3wm
+            ;;
+        -t | --other)
+            initOther
+            ;;
+        -s | --scripts)
+            initScripts
+            ;;
+        -x | --xmonad)
+            initXmonad
+            ;;
+        -m | --multi-monitors)
+            initMultiMonitorControlScript
+            ;;
+                *)
+            echo "ERROR: unknown parameter \"$PARAM\""
+            help
+            exit 1
+            ;;
+    esac
+    shift
+done

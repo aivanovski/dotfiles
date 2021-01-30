@@ -1,0 +1,4 @@
+PATH=$PATH:$HOME/.local/bin
+
+[[ -f $HOME/.config/xprofile-setup ]] && . $HOME/.config/xprofile-setup
+[[ -f $HOME/.config/xprofile-variables ]] && . $HOME/.config/xprofile-variables

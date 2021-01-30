@@ -1,0 +1,121 @@
+#!/bin/sh
+
+replaceTextInFile() {
+    oldText=$1
+    newText=$2
+    filePath=$3
+
+    echo "$filePath: '$oldText' replaced with '$newText'"
+    sed -i "s/$oldText/$newText/g" "$filePath"
+}
+
+setupXprofileVariable() {
+    variableName=$1
+    desirableValue=$2
+    
+    filePath="$HOME/.config/xprofile-variables"
+    currentValue=$(grep "$variableName" "$filePath" | cut -d= -f2)
+
+    if [ ! "$currentValue" == "$desirableValue" ]; then
+        replaceTextInFile "$variableName=$currentValue" "$variableName=$desirableValue" "$filePath"
+    fi
+}
+
+setupLineInI3wmConfig() {
+    variableName=$1
+    desirableValue=$2
+
+    filePath="$HOME/.config/i3/config"
+    currentValue=$(grep "$variableName" "$filePath" | cut -d" " -f3)
+
+    if [ ! "$currentValue" == "$desirableValue" ]; then
+        replaceTextInFile "$variableName $currentValue" "$variableName $desirableValue" "$filePath"
+    fi
+}
+
+setupLineInAwesomeWmConfig() {
+    variableName=$1
+    desirableValue=$2
+
+    filePath="$HOME/.config/awesome/themes/default/theme.lua"
+    currentValue=$(grep "$variableName" "$filePath"| cut -d" " -f6 | sed "s/\"//g")
+
+    if [ ! "$currentValue" == "$desirableValue" ]; then
+        replaceTextInFile "$variableName $currentValue\"" "$variableName $desirableValue\"" "$filePath"
+    fi
+}
+
+getNumberOfMonitors() {
+    xrandr | grep " connected " | cut -d" " -f1 | wc -l
+}
+
+setupBuiltInMonitor() {
+    setupHiDpiConfig
+    xrandr --output HDMI3 --off --output eDP1 --primary --auto
+}
+
+setupExternalOrBuiltInMonitor() {
+    numberOfMonitors=$(getNumberOfMonitors)
+    if [ "$numberOfMonitors" == "2" ]; then
+        setupLowDpiConfig
+        xrandr --output HDMI3 --primary --auto --output eDP1 --off
+    else 
+        setupHiDpiConfig
+        xrandr --output HDMI3 --off --output eDP1 --primary --auto
+    fi
+}
+
+setupExtendedExternalMonitorOrBuiltIn() {
+    numberOfMonitors=$(getNumberOfMonitors)
+    if [ "$numberOfMonitors" == "2" ]; then
+        setupLowDpiConfig
+        xrandr --output HDMI3 --primary --auto --right-of eDP1 --output eDP1 --auto
+    else 
+        setupHiDpiConfig
+        xrandr --output HDMI3 --off --output eDP1 --primary --auto
+    fi
+}
+
+setupHiDpiConfig() {
+    echo "Configuring for High DPI..."
+
+    setupXprofileVariable "GDK_SCALE" "2"
+    setupXprofileVariable "GDK_DPI_SCALE" "0.9"
+    setupXprofileVariable "QT_FONT_DPI" "192"
+
+    setupLineInI3wmConfig "font pango:monospace" "20"
+    setupLineInAwesomeWmConfig "theme.font = \"Droid Sans Mono" "20"
+}
+
+setupLowDpiConfig() {
+    echo "Configuring for Low DPI..."
+
+    setupXprofileVariable "GDK_SCALE" "1"
+    setupXprofileVariable "GDK_DPI_SCALE" "1.1"
+    setupXprofileVariable "QT_FONT_DPI" "96"
+
+    setupLineInI3wmConfig "font pango:monospace" "12"
+    setupLineInAwesomeWmConfig "theme.font = \"Droid Sans Mono" "12"
+}
+
+main() {
+    # Read MON_ENV variable
+    [[ -f $HOME/.config/monitor-environment ]] && . $HOME/.config/monitor-environment
+
+    case "$MON_ENV" in
+        "BUILT_IN")
+            setupBuiltInMonitor
+            ;;
+        "EXTERNAL_OR_BUILT_IN")
+            setupExternalOrBuiltInMonitor
+            ;;
+        "EXTEND_EXTERNAL")
+            setupExtendedExternalMonitorOrBuiltIn
+            ;;
+            *)
+            echo "Unknown MON_ENV variable"
+            ;;
+    esac
+}
+
+main

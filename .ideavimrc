@@ -1,0 +1,37 @@
+set vim-surround
+
+set autoindent
+set showmatch
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+set ruler
+set pastetoggle=<F10>
+set ttimeoutlen=10
+set mouse=a
+" set number relativenumber
+set number
+
+" remap enter to column selection mode to ctrl-q
+nnoremap <c-q> <c-v>
+
+" Remap '[m'(previous method) and ']m'(next method) to 'H' and 'L'
+nnoremap H [mzz
+nnoremap L ]mzz
+
+" Remap gw to close window
+nnoremap gw :q<CR>
+
+" Replace all tabs in current line
+nnoremap grt :s/\t/    /g<CR>
+
+nnoremap gh :action Back<CR>
+nnoremap gl :action Forward<CR>
+nnoremap go :action GotoDeclaration<CR>
+nnoremap gi :action GotoImplementation<CR>
+nnoremap } :action NextTab<CR>
+nnoremap { :action PreviousTab<CR>
+
+" Split line by symbol ','
+nnoremap gs f,lxi<CR>l

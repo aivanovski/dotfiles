@@ -1,0 +1,5 @@
+#/bin/bash
+
+# find latest "adb shell am start" related with VTB project in .bash_history and executes it
+command=$(grep -ri '^adb shell am start' $HOME/.bash_history | grep -i 'vtb' | tail -1)
+$command

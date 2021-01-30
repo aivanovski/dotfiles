@@ -1,0 +1,24 @@
+#!/bin/bash
+
+startApplicationIfNeed()
+{
+    displayName=$1
+    processName=$2
+    launchCommand=$3
+
+    runningId=$(pgrep $processName | head -n 1)
+
+    if [ -z "$runningId" ]; then
+        echo -e "\e[0m$displayName \e[33mSTARTED"
+        $launchCommand > /dev/null 2>&1 &
+    else
+        echo -e "\e[0m$displayName \e[32mRUNNING"
+    fi
+}
+
+startApplicationIfNeed "SmartGit" "smartgit" "smartgit"
+startApplicationIfNeed "Android Studio 4.0" "studio.sh" "android-studio-4.0.1"
+startApplicationIfNeed "Chromium" "chromium" "chromium"
+startApplicationIfNeed "Telegram" "telegram" "telegram-desktop"
+startApplicationIfNeed "Discord" "Discord" "discord"
+startApplicationIfNeed "Emulator" "emulator" "emulator -avd Nexus_5X_API_29"

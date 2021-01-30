@@ -1,0 +1,5 @@
+#!/bin/sh
+
+export IBUS_ENABLE_SYNC_MODE=1
+export XMODIFIERS=""
+exec "$HOME/bin/android-studio-4.1b/bin/studio.sh" %f
