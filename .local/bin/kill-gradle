@@ -1,7 +1,0 @@
-#!/bin/sh
-
-gradleDaemonId=$(ps aux | grep gradle | grep GradleDaemon | awk '{ print $2 }')
-kotlinCompileDaemonId=$(ps aux | grep gradle | grep KotlinCompileDaemon | awk '{ print $2 }')
-
-[ ! "$gradleDaemonId" == "" ] &&  kill -9 "$gradleDaemonId" && echo "Kill Gradle Daemon" || echo "No Gradle Daemon"
-[ ! "$kotlinCompileDaemonId" == "" ] &&  kill -9 "$kotlinCompileDaemonId" && echo "Kill Compile Daemon" || echo "No Kotlin Daemon"
