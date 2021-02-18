@@ -13,6 +13,10 @@ set mouse=a
 " set number relativenumber
 set number
 
+" Turn off noisy system sounds
+set visualbell
+set noerrorbells
+
 " remap enter to column selection mode to ctrl-q
 nnoremap <c-q> <c-v>
 
@@ -35,3 +39,6 @@ nnoremap { :action PreviousTab<CR>
 
 " Split line by symbol ','
 nnoremap gs f,lxi<CR>l
+
+" Remap gn to :noh (hide highlight)
+nnoremap gn :noh<CR>

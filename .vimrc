@@ -129,6 +129,9 @@ nnoremap gb :po<CR>
 nnoremap H [mzz
 nnoremap L ]mzz
 
+" Remap gn to :noh (hide highlight)
+nnoremap gn :noh<CR>
+
 " Make cursor thinner in INSERT mode
 if has("autocmd")
   au VimEnter,InsertLeave * silent execute '!echo -ne "\e[1 q"' | redraw!
