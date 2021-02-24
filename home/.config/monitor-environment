@@ -1,5 +1,8 @@
 # Determines active monitor. Possible values:
 #     BUILT_IN - only built-in monitor will be active 
 #     EXTERNAL_OR_BUILT_IN - external monitor will be active if it is connected, otherwise build-in monitor will be active
-#     EXTEND_EXTERNAL - external and built-in monitors will be active, external will be set as primary
 MON_ENV="EXTERNAL_OR_BUILT_IN"
+
+
+# LOW, HIGH or UNSET
+MON_DPI="UNSET"
