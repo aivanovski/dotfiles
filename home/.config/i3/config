@@ -25,8 +25,8 @@ set $ws8 "8"
 set $ws9 "9:Git"
 
 # Application auto start
-exec --no-startup-id terminator; workspace 
-exec --no-startup-id terminator; workspace 1
+exec --no-startup-id terminator
+exec --no-startup-id "terminator --command ranger"
 
 ### Remove border
 default_border pixel
@@ -46,10 +46,10 @@ for_window [class="Gnome-screenshot"] floating enable
 #for_window [class="Xfce4-terminal"] floating enable
 
 ### Top bar font
-font pango:monospace 20
+font pango:monospace 12
 
 ### Hotkeys
-bindsym $mod+g exec dm-tool lock
+bindsym $mod+F6 exec "dm-tool lock"
 bindsym $mod+w kill
 bindsym $mod+Shift+Escape exec systemctl suspend
 # change keyboard layout
@@ -81,8 +81,11 @@ bindsym $mod+Shift+s exec gnome-screenshot -i
 # bindsym $mod+Shift+a exec "gnome-screenshot --area --file \"$HOME/Pictures/Screenshot $(date +'%Y-%m-%d %H-%M-%S').png\""
 bindsym $mod+Shift+c exec speedcrunch
 bindsym $mod+Shift+i exec code "$HOME/.config/i3/config"
-bindsym $mod+Shift+d exec "$HOME/.config/xprofile-setup"
-bindsym $mod+Shift+a exec "adb-start-activity"
+bindsym $mod+Shift+d exec "monitor-setup --setup-env"
+bindsym $mod+Shift+e exec "monitor-setup --external"
+bindsym $mod+Shift+b exec "monitor-setup --built-in"
+# bindsym $mod+Shift+a exec "adb-start-activity"
+bindsym $mod+Shift+g exec gimp
 bindsym $mod+e exec firefox
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
@@ -214,6 +217,7 @@ for_window [class="jetbrains-studio"] move to workspace $ws3
 for_window [class="jetbrains-idea-ce"] move to workspace $ws3
 for_window [class="TelegramDesktop"] move to workspace $ws4
 for_window [class="ViberPC"] move to workspace $ws4
+for_window [class="Slack"] move to workspace $ws4
 for_window [class="discord"] move to workspace $ws4
 for_window [class="gimp"] move to workspace $ws5
 for_window [class="code-oss"] move to workspace $ws5
