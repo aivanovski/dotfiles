@@ -51,7 +51,7 @@ font pango:monospace 12
 ### Hotkeys
 bindsym $mod+F6 exec "dm-tool lock"
 bindsym $mod+w kill
-bindsym $mod+Shift+Escape exec systemctl suspend
+bindsym $mod+q exec "power-menu"
 # change keyboard layout
 bindsym $mod+space exec "xkb-switch -n" 
 
