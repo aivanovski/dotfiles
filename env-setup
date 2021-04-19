@@ -10,21 +10,16 @@ help()
     echo "Environment:"
     echo "-d --dev              init dev environment variable"
     echo "-o --home             init home environment variable"
+    echo "-m --monitor-env      init environment variables for controlling monitor output at ~/.config."
+    echo "                         It copies content of the files: '.config/monitor-environment' and '.config/xprofile-variables'."
     echo ""
     echo "Configs:"
     echo "-b --bash             init .bashrc and .bash_profile"
     echo "-v --vim              init .vimrc"
     echo "-g --git              init .gitconfig"
     echo "-i --i3wm             init i3/config and configs for i3status and polybar"
-    echo "-s --scripts          init scripts in ~/.local/bin"
     echo "-t --other            init .dircolors.256"
     echo "-x --xmonad           init Xmonad config"
-    echo "-m --multi-monitors   add 'xprofile-setup' script at '.xprofile', which controls system behavior in case of multimonitor setup."
-    echo "                      Behavior is determined by value of 'MON_ENV' varible defined in '.config/monitor-environment'."
-    echo "                      Possible values:"
-    echo "                          BUILT_IN - only built-in monitor will be active"
-    echo "                          EXTERNAL_OR_BUILT_IN - external monitor will be active, otherwise build-in monitor will be active"
-    echo "                          EXTEND_EXTERNAL - external and built-in monitors will be active, external will be set as primary"
 }
 
 initEnvironmentVariable()
@@ -132,31 +127,6 @@ initOther()
     createLink ".dircolors.256" ".dircolors.256"
 }
 
-initScripts()
-{
-    env=$(getEnvironmentVariable)
-
-    # Create necessary dir
-    createDirIfNeed ".local/bin"
-
-    # Get list of script names and create links for them
-    files=$(ls "$PWD/.local/bin")
-    while read -r file
-    do
-        createLink ".local/bin/$file" ".local/bin/$file"
-    done <<< $(echo "$files")
-
-    # Skip environment scripts if there is no folder
-    [ ! -d "$PWD/$env/.local/bin" ] && return 0
-
-    # Get list of scripts in environment folder
-    envFiles=$(ls "$PWD/$env/.local/bin")
-    while read -r file
-    do
-        createLink "$env/.local/bin/$file" ".local/bin/$file"
-    done <<< $(echo "$envFiles")
-}
-
 getEnvironmentVariable()
 {
     # read and return value of $ENV from environment file
@@ -164,17 +134,16 @@ getEnvironmentVariable()
     [ -f "$HOME/.config/environment" ] && grep "ENV" "$HOME/.config/environment" | cut -f2 -d"\"" || echo "$errorMessage"
 }
 
-initMultiMonitorControlScript()
+initMonitorEnvironment()
 {
     env=$(getEnvironmentVariable)
 
-    if [ -f "$env/.config/xprofile-setup" ]; then
-        createLink "$env/.config/xprofile-setup" ".config/xprofile-setup"
-
+    if [ -f "$env/.config/monitor-environment" ]; then
         copyOrOverwrite "$env/.config/monitor-environment" "$HOME/.config/monitor-environment"
+    fi
+
+    if [ -f "$env/.config/xprofile-variables" ]; then
         copyOrOverwrite "$env/.config/xprofile-variables" "$HOME/.config/xprofile-variables"
-    else
-        echo "Not implemented for $env environment"
     fi
 }
 
@@ -209,14 +178,11 @@ while [ "$1" != "" ]; do
         -t | --other)
             initOther
             ;;
-        -s | --scripts)
-            initScripts
-            ;;
         -x | --xmonad)
             initXmonad
             ;;
-        -m | --multi-monitors)
-            initMultiMonitorControlScript
+        -m | --monitor-env)
+            initMonitorEnvironment
             ;;
                 *)
             echo "ERROR: unknown parameter \"$PARAM\""
