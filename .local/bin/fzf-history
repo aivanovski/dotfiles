@@ -1,3 +1,0 @@
-#!/bin/sh
-
-cat $HOME/.bash_history | fzf
