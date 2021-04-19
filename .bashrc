@@ -52,6 +52,7 @@ alias wifi-connect-existing='nmcli connection up'
 alias wifi-connect-new='nmcli d wifi connect'
 alias gitbook='docker run -it --rm --entrypoint=/bin/sh -v "$HOME/Yandex/GitBook":/gitbook -p 4000:4000 amontaigu/gitbook'
 alias calendar='cal -m -n 6'
+alias fzfh='cat $HOME/.bash_history | fzf'
 
 # Autocomplete
 complete -cf sudo
