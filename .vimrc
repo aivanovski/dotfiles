@@ -41,14 +41,24 @@ call vundle#begin()
   Plugin 'hsanson/vim-android'
 
   " Autocompolete
-  Plugin 'shougo/deoplete.nvim' " requires 'python-msgpack' and 'pynvim' packages on host
-  Plugin 'roxma/nvim-yarp'
-  Plugin 'roxma/vim-hug-neovim-rpc'
+  if has('nvim')
+    Plugin 'shougo/deoplete.nvim'
+  else
+    " requires 'python-msgpack' and 'pynvim' packages on host
+    Plugin 'shougo/deoplete.nvim'
+    Plugin 'roxma/nvim-yarp'
+    Plugin 'roxma/vim-hug-neovim-rpc'
+  endif
+
 call vundle#end()
 
 " Enable 24bit true color for theme night-owl
 " If you have vim >=8.0 or Neovim >= 0.1.5
 if (has("termguicolors"))
+ " 24bit color support for Alacritt
+ let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
+ let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
+
  set termguicolors
 endif
 
