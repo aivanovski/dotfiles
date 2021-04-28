@@ -1,5 +1,6 @@
 ### Map WIN key as mod
 set $mod Mod4
+set $term alacritty
 
 ### Autostart
 # set background
@@ -25,8 +26,8 @@ set $ws8 "8"
 set $ws9 "9:Git"
 
 # Application auto start
-exec --no-startup-id terminator
-exec --no-startup-id "terminator --command ranger"
+exec --no-startup-id $term
+exec --no-startup-id "$term --command ranger"
 
 ### Remove border
 default_border pixel
@@ -51,7 +52,6 @@ font pango:monospace 12
 ### Hotkeys
 bindsym $mod+F6 exec "dm-tool lock"
 bindsym $mod+w kill
-bindsym $mod+q exec "power-menu"
 # change keyboard layout
 bindsym $mod+space exec "xkb-switch -n" 
 
@@ -74,16 +74,18 @@ bindsym $mod+F1 exec xbacklight -dec 10 # decrease screen brightness
 floating_modifier $mod
 
 # Hotkeys for programs
-bindsym $mod+Shift+Return exec terminator
+bindsym $mod+Shift+Return exec $term
 bindsym $mod+Return exec "layout=$(xkb-switch -p); xkb-switch -s us; rofi -font 'hack 20' -them solarized -show run; xkb-switch -s ${layout}"
 bindsym $mod+Shift+m exec gnome-system-monitor
 bindsym $mod+Shift+s exec gnome-screenshot -i
 # bindsym $mod+Shift+a exec "gnome-screenshot --area --file \"$HOME/Pictures/Screenshot $(date +'%Y-%m-%d %H-%M-%S').png\""
 bindsym $mod+Shift+c exec speedcrunch
-bindsym $mod+Shift+i exec code "$HOME/.config/i3/config"
+bindsym $mod+q exec "power-menu"
+bindsym $mod+Shift+i exec "config-menu"
 bindsym $mod+Shift+d exec "monitor-setup --setup-env"
 bindsym $mod+Shift+e exec "monitor-setup --external"
 bindsym $mod+Shift+b exec "monitor-setup --built-in"
+bindsym $mod+Shift+x exec "kill-process"
 # bindsym $mod+Shift+a exec "adb-start-activity"
 bindsym $mod+Shift+g exec gimp
 bindsym $mod+e exec firefox
@@ -252,3 +254,8 @@ bindsym $mod+Ctrl+Left move workspace to output left
 #				urgent_workspace   #2f343a #900000 #000000
 #       } 
 # }
+
+# For development
+bindsym $mod+plus exec --no-startup-id "adb shell media volume --show --stream 3 --adj raise"
+bindsym $mod+minus exec --no-startup-id "adb shell media volume --show --stream 3 --adj lower"
+
