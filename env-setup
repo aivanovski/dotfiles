@@ -20,6 +20,7 @@ help()
     echo "-i --i3wm             init i3/config and configs for i3status and polybar"
     echo "-t --other            init .dircolors.256"
     echo "-x --xmonad           init Xmonad config"
+    echo "-a --alacritty        init .config/alacritty/alacritty.yml"
 }
 
 initEnvironmentVariable()
@@ -60,6 +61,14 @@ initGit()
     env=$(getEnvironmentVariable)
 
     createLink "$env/.gitconfig" ".gitconfig"
+}
+
+initAlacritty()
+{
+    env=$(getEnvironmentVariable)
+
+    createDirIfNeed ".config/alacritty"
+    createLink "$env/.config/alacritty/alacritty.yml" ".config/alacritty/alacritty.yml"
 }
 
 initI3wm()
@@ -183,6 +192,9 @@ while [ "$1" != "" ]; do
             ;;
         -m | --monitor-env)
             initMonitorEnvironment
+            ;;
+        -a | --alacritty)
+            initAlacritty
             ;;
                 *)
             echo "ERROR: unknown parameter \"$PARAM\""
