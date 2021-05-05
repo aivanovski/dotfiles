@@ -1,4 +1,4 @@
 PATH=$PATH:$HOME/.local/bin
 
-[[ -f $HOME/.config/xprofile-setup ]] && . $HOME/.config/xprofile-setup
+[[ -f $HOME/.local/bin/monitor-setup ]] && sh -c "$HOME/.local/bin/monitor-setup --setup"
 [[ -f $HOME/.config/xprofile-variables ]] && . $HOME/.config/xprofile-variables
