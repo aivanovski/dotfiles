@@ -52,6 +52,7 @@ alias gitbook='docker run -it --rm --entrypoint=/bin/sh -v "$HOME/Yandex/GitBook
 alias calendar='cal -m -n 6'
 alias fzfh='cat $HOME/.bash_history | fzf'
 alias pacgrep='pacman -Q | grep -i'
+alias findapk='find . -name "*.apk"'
 
 # Autocomplete
 complete -cf sudo
