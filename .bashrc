@@ -54,6 +54,9 @@ alias fzfh='cat $HOME/.bash_history | fzf'
 alias pacgrep='pacman -Q | grep -i'
 alias findapk='find . -name "*.apk"'
 
+# Rate and sort latest 10 mirrors by download speed and write them to /etc/pacman.d/mirrorlist
+alias reflector-update='reflector --verbose --latest 10 --sort rate --save /etc/pacman.d/mirrorlist'
+
 # Autocomplete
 complete -cf sudo
 complete -cf man
