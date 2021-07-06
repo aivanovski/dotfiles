@@ -135,6 +135,9 @@ map <F5> "+y
 nnoremap gd <C-]>
 nnoremap gb :po<CR>
 
+" Split line by symbol ','
+nnoremap gs f,lxi<CR>l
+
 " Remap '[m'(previous method) and ']m'(next method) to 'H' and 'L'
 nnoremap H [mzz
 nnoremap L ]mzz
