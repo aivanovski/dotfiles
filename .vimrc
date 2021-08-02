@@ -38,17 +38,19 @@ call vundle#begin()
   "Plugin 'clojure-vim/async-clj-omni' " autocomplete for Clojure
  
   " Android support
-  Plugin 'hsanson/vim-android'
+  "Plugin 'hsanson/vim-android'
 
   " Autocompolete
   if has('nvim')
     Plugin 'shougo/deoplete.nvim'
   else
-    " requires 'python-msgpack' and 'pynvim' packages on host
-    Plugin 'shougo/deoplete.nvim'
-    Plugin 'roxma/nvim-yarp'
-    Plugin 'roxma/vim-hug-neovim-rpc'
-  endif
+    if !has('macunix')
+        " requires 'python-msgpack' and 'pynvim' packages on host
+        Plugin 'shougo/deoplete.nvim'
+        Plugin 'roxma/nvim-yarp'
+        Plugin 'roxma/vim-hug-neovim-rpc'
+    endif 
+ endif
 
 call vundle#end()
 
@@ -71,25 +73,25 @@ set hidden
 let $RC="$HOME/.vimrc"
 
 " Enable deoplete autocomplete
-let g:deoplete#enable_at_startup = 1
+let g:deoplete#enable_at_startup=1
 
 " Always show statusline
 set laststatus=2
 
+set backspace=indent,eol,start
 set tabstop=4
 set shiftwidth=4
 set smartindent
 set autoindent
-
-" Use spaces instead of tabs
 set expandtab
 
-set backspace=2
+" Searching
 set showmatch
 set hlsearch
 set incsearch
 set ignorecase
 set smartcase
+
 set ruler
 set history=128
 set undolevels=2048
@@ -97,6 +99,7 @@ set pastetoggle=<F10>
 set ttimeoutlen=10
 set background=dark
 
+" Encoding
 set termencoding=utf-8
 set fileencoding=utf-8
 set encoding=utf-8
@@ -111,17 +114,9 @@ set splitbelow splitright
 set number
 
 colo night-owl
-" colo gruvbox
-" colo xoria256
-" colo iceberg
-" colo abstract
 
 " Fix background in tmux
 set t_ut=
-
-" map <S-Tab> <C-w>w
-" map <S-PageUP> :bn<CR>
-" map <S-PageDown> :bp<CR>
 
 " Open NerdTree plugin
 nnoremap <C-n> :NERDTreeToggle<CR>
