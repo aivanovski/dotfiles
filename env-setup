@@ -21,6 +21,7 @@ help()
     echo "-t --other            init .dircolors.256"
     echo "-x --xmonad           init Xmonad config"
     echo "-a --alacritty        init .config/alacritty/alacritty.yml"
+    echo "-u --tmux             init .config/tmux/tmux.conf"
 }
 
 initEnvironmentVariable()
@@ -69,6 +70,14 @@ initAlacritty()
 
     createDirIfNeed ".config/alacritty"
     createLink "$env/.config/alacritty/alacritty.yml" ".config/alacritty/alacritty.yml"
+}
+
+initTmux()
+{
+    env=$(getEnvironmentVariable)
+
+    createDirIfNeed ".config/tmux"
+    createLink "$env/.config/tmux/tmux.conf" ".config/tmux/tmux.conf"
 }
 
 initI3wm()
@@ -195,6 +204,9 @@ while [ "$1" != "" ]; do
             ;;
         -a | --alacritty)
             initAlacritty
+            ;;
+        -u | --tmux)
+            initTmux
             ;;
                 *)
             echo "ERROR: unknown parameter \"$PARAM\""
