@@ -65,6 +65,11 @@ endif
 syntax on
 filetype plugin indent on
 
+set hidden
+
+" Variables
+let $RC="$HOME/.vimrc"
+
 " Enable deoplete autocomplete
 let g:deoplete#enable_at_startup = 1
 
