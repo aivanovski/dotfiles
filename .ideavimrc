@@ -1,11 +1,7 @@
 set vim-surround
 
 set autoindent
-set showmatch
-set hlsearch
-set incsearch
-set ignorecase
-set smartcase
+set showmatch, hlsearch, incsearch, ignorecase, smartcase
 set ruler
 set pastetoggle=<F10>
 set ttimeoutlen=10
@@ -24,21 +20,67 @@ nnoremap <c-q> <c-v>
 nnoremap H [mzz
 nnoremap L ]mzz
 
-" Remap gw to close window
+" Remap gn to :noh (hide highlight)
+nnoremap gn :noh<CR>
+
+" Operations with windows
 nnoremap gw :q<CR>
+nnoremap gaw :qa<CR>
+nnoremap <C-w>o :action CloseAllEditorsButActive<CR>
 
-" Replace all tabs in current line
-nnoremap grt :s/\t/    /g<CR>
-
+" Navigation in general
 nnoremap gh :action Back<CR>
 nnoremap gl :action Forward<CR>
-nnoremap go :action GotoDeclaration<CR>
-nnoremap gi :action GotoImplementation<CR>
 nnoremap } :action NextTab<CR>
 nnoremap { :action PreviousTab<CR>
 
-" Split line by symbol ','
-nnoremap gs f,lxi<CR>l
+" Class navigation
+nnoremap go :action GotoDeclaration<CR>
+nnoremap gi :action GotoImplementation<CR>
+nnoremap gu :action GotoSuperMethod<CR>
+nnoremap gq :action QuickImplementations<CR>
+nnoremap gy :action FindUsages<CR>
 
-" Remap gn to :noh (hide highlight)
-nnoremap gn :noh<CR>
+" Code look
+nnoremap gp :action EditorToggleShowWhitespaces<CR>
+
+" Generating, formating, renaming
+nnoremap ,gr :action ReformatCode<CR>
+nnoremap ,go :action OverrideMethods<CR>
+nnoremap ,gi :action ImplementMethods<CR>
+nnoremap ,gg :action Generate<CR>
+nnoremap ,rn :action RenameElement<CR>
+
+" Popups
+nnoremap gm :action FileStructurePopup<CR>
+
+" Tests
+nnoremap gt :action GotoTest<CR>
+
+" Bookmarks
+nnoremap m0 :action ToggleBookmark0<CR>
+nnoremap m1 :action ToggleBookmark1<CR>
+nnoremap m2 :action ToggleBookmark2<CR>
+nnoremap m3 :action ToggleBookmark3<CR>
+nnoremap m4 :action ToggleBookmark4<CR>
+nnoremap m5 :action ToggleBookmark5<CR>
+nnoremap m6 :action ToggleBookmark6<CR>
+nnoremap m7 :action ToggleBookmark7<CR>
+nnoremap m8 :action ToggleBookmark8<CR>
+nnoremap m9 :action ToggleBookmark9<CR>
+
+nnoremap `0 :action GotoBookmark0<CR>
+nnoremap `1 :action GotoBookmark1<CR>
+nnoremap `2 :action GotoBookmark2<CR>
+nnoremap `3 :action GotoBookmark3<CR>
+nnoremap `4 :action GotoBookmark4<CR>
+nnoremap `5 :action GotoBookmark5<CR>
+nnoremap `6 :action GotoBookmark6<CR>
+nnoremap `7 :action GotoBookmark7<CR>
+nnoremap `8 :action GotoBookmark8<CR>
+nnoremap `9 :action GotoBookmark9<CR>
+
+" Replace all tabs in current line
+nnoremap ,gt :s/\t/    /g<CR>
+" Split line by symbol ','
+nnoremap ,gs f,lxi<CR>l
