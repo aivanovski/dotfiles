@@ -54,6 +54,9 @@ nnoremap ,rn :action RenameElement<CR>
 " Popups
 nnoremap gm :action FileStructurePopup<CR>
 
+" Debugging
+nnoremap gb :action ToggleLineBreakpoint<CR>
+
 " Tests
 nnoremap gt :action GotoTest<CR>
 
