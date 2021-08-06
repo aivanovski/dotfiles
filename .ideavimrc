@@ -44,6 +44,8 @@ nnoremap gi :action GotoImplementation<CR>
 nnoremap gu :action GotoSuperMethod<CR>
 nnoremap gq :action QuickImplementations<CR>
 nnoremap gy :action FindUsages<CR>
+nnoremap ( :action GotoPreviousError<CR>
+nnoremap ) :action GotoNextError<CR>
 
 " Code look
 nnoremap ,gp :action EditorToggleShowWhitespaces<CR>
