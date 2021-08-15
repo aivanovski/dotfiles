@@ -22,7 +22,6 @@ call vundle#begin()
   Plugin 'vim-airline/vim-airline-themes'
   Plugin 'tpope/vim-fugitive'
   Plugin 'airblade/vim-gitgutter'
-  Plugin 'matze/vim-move'
   Plugin 'Yggdroot/indentLine'
   Plugin 'Raimondi/delimitMate'
   Plugin 'ctrlpvim/ctrlp.vim'
@@ -145,6 +144,14 @@ nnoremap L ]mzz
 " Remap gn to :noh (hide highlight)
 nnoremap gn :noh<CR>
 
+" Move lines up and down
+nnoremap <C-j> :m .+1<CR>==
+nnoremap <C-k> :m .-2<CR>==
+inoremap <C-j> <Esc>:m .+1<CR>==gi
+inoremap <C-k> <Esc>:m .-2<CR>==gi
+vnoremap <C-j> :m '>+1<CR>gv=gv
+vnoremap <C-k> :m '<-2<CR>gv=gv
+
 " Make cursor thinner in INSERT mode
 if has("autocmd")
   au VimEnter,InsertLeave * silent execute '!echo -ne "\e[1 q"' | redraw!
@@ -216,9 +223,6 @@ let g:NERDTreeIndicatorMapCustom = {
   \ "Clean"     : "0",
   \ "Unknown"   : "?"
   \ }
-
-" vim-move
-let g:move_key_modifier = 'C'
 
 " indentLine: prevent from hiding elements in markdown
 let g:indentLine_conceallevel = 0
