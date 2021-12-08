@@ -49,6 +49,7 @@ nnoremap ) :action GotoNextError<CR>
 
 " Code look
 nnoremap ,gp :action EditorToggleShowWhitespaces<CR>
+nnoremap ,ga :action Annotate<CR>
 
 " Generating, formating, renaming
 nnoremap ,gf :action ReformatCode<CR>
