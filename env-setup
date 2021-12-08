@@ -15,7 +15,7 @@ help()
     echo ""
     echo "Configs:"
     echo "-b --bash             init .bashrc and .bash_profile"
-    echo "-v --vim              init .vimrc"
+    echo "-v --vim              init .config/nvim and .ideavimrc"
     echo "-g --git              init .gitconfig"
     echo "-i --i3wm             init i3/config and configs for i3status and polybar"
     echo "-t --other            init .dircolors.256"
@@ -53,7 +53,21 @@ initBash()
 
 initVim()
 {
-    createLink ".vimrc" ".vimrc"
+    # Create necessary dirs
+    createDirIfNeed ".config/nvim"
+    createDirIfNeed ".config/nvim/lua"
+
+    # Create links to Neovim config files
+    createLink ".config/nvim/init.lua" ".config/nvim/init.lua"
+    createLink ".config/nvim/lua/autocompletion.lua" ".config/nvim/lua/autocompletion.lua"
+    createLink ".config/nvim/lua/helpers.lua" ".config/nvim/lua/helpers.lua"
+    createLink ".config/nvim/lua/lightline.lua" ".config/nvim/lua/lightline.lua"
+    createLink ".config/nvim/lua/lsp.lua" ".config/nvim/lua/lsp.lua"
+    createLink ".config/nvim/lua/nvtree.lua" ".config/nvim/lua/nvtree.lua"
+    createLink ".config/nvim/lua/plugins.lua" ".config/nvim/lua/plugins.lua"
+    createLink ".config/nvim/lua/vim-markdown.lua" ".config/nvim/lua/vim-markdown.lua"
+
+    # Create link to IdeaVim plugin config file
     createLink ".ideavimrc" ".ideavimrc"
 }
 
