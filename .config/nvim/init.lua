@@ -77,7 +77,7 @@ map_key_bindings({
   -- { key = 'gc', command = ':Commentary<CR>' },
   
   -- Open urls under the cursor
-  { key = 'gx', command = ':!open <c-r><c-a>' },
+  { key = 'go', command = ':!open <cWORD>' },
 
   -- Delete all
   { key = 'dia', command = 'gg^dG<CR>' },
