@@ -1,5 +1,5 @@
 ### Map WIN key as mod
-set $mod Mod4
+set $mod Mod1
 set $term alacritty
 
 ### Autostart
@@ -10,6 +10,10 @@ exec --no-startup-id exec picom
 exec_always xset r rate 200 40
 # remap key near "Win" button
 exec_always xmodmap -e "keycode 135 = Super_L"
+# disable touch screen
+exec_always xinput | grep ELAN | awk -F " "  '{print $5}' | cut -d'=' -f2 | xargs xinput disable
+# enable two-finger click in touchpad
+exec_always xinput set-prop "DLL0945:00 04F3:311C Touchpad" "libinput Click Method Enabled" 0 1
 # run network-manager applet
 exec --no-startup-id nm-applet
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
@@ -47,7 +51,7 @@ for_window [class="Gnome-screenshot"] floating enable
 #for_window [class="Xfce4-terminal"] floating enable
 
 ### Top bar font
-font pango:monospace 12
+font pango:monospace 28
 
 ### Hotkeys
 bindsym $mod+F6 exec "dm-tool lock"
@@ -79,7 +83,7 @@ floating_modifier $mod
 
 # Hotkeys for programs
 bindsym $mod+Shift+Return exec $term
-bindsym $mod+Return exec "layout=$(xkb-switch -p); xkb-switch -s us; rofi -font 'hack 20' -them solarized -show drun -show-icons; xkb-switch -s ${layout}"
+bindsym $mod+Return exec "layout=$(xkb-switch -p); xkb-switch -s us; rofi -show drun -show-icons; xkb-switch -s ${layout}"
 bindsym $mod+Shift+m exec gnome-system-monitor
 bindsym $mod+Shift+s exec gnome-screenshot -i
 # bindsym $mod+Shift+a exec "gnome-screenshot --area --file \"$HOME/Pictures/Screenshot $(date +'%Y-%m-%d %H-%M-%S').png\""
