@@ -22,6 +22,7 @@ help()
     echo "-x --xmonad           init Xmonad config"
     echo "-a --alacritty        init .config/alacritty/alacritty.yml"
     echo "-u --tmux             init .config/tmux/tmux.conf"
+    echo "-r --rofi             init .config/rofi/config.rasi"
 }
 
 initEnvironmentVariable()
@@ -137,6 +138,15 @@ initXmonad()
     createLink ".xmonad/get-volume.sh" ".xmonad/get-volume.sh"
 }
 
+initRofi()
+{
+    # Create necessary dirs
+    createDirIfNeed ".config/rofi"
+
+    # Create links to config files
+    createLink ".config/rofi/config.rasi" ".config/rofi/config.rasi"
+}
+
 createDirIfNeed()
 {
     name=$1
@@ -221,6 +231,9 @@ while [ "$1" != "" ]; do
             ;;
         -u | --tmux)
             initTmux
+            ;;
+        -r | --rofi)
+            initRofi
             ;;
                 *)
             echo "ERROR: unknown parameter \"$PARAM\""
