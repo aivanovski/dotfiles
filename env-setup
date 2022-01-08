@@ -41,6 +41,8 @@ createLink()
 
     if [ -f "$HOME/$dst" ]; then
         rm "$HOME/$dst" && ln -s "$PWD/$src" "$HOME/$dst" && echo "$successMessage" || echo "$errorMessage"
+    elif [ -d "$HOME/$dst" ]; then
+        rm "$HOME/$dst" && ln -s "$PWD/$src" "$HOME/$dst" && echo "$successMessage" || echo "$errorMessage"
     else
         ln -s "$PWD/$src" "$HOME/$dst" && echo "$successMessage" || echo "$errorMessage"
     fi
@@ -97,32 +99,14 @@ initTmux()
 
 initI3wm()
 {
-    env=$(getEnvironmentVariable)
+    # i3 config
+    createLink ".config/i3" ".config/i3"
 
-    # Create necessary dirs
-    createDirIfNeed ".config/i3"
-    createDirIfNeed ".config/i3status"
-    createDirIfNeed ".config/picom"
-    createDirIfNeed ".config/polybar"
-    rm -r "$HOME/.config/polybar/scripts"
-
-    # Create links to config files
-    createLink "$env/.config/i3/config" ".config/i3/config"
-    createLink "$env/.config/i3/bg-icescape.jpg" ".config/i3/bg-icescape.jpg"
-    createLink "$env/.config/i3/bg-mountains.jpg" ".config/i3/bg-mountains.jpg"
-
-    # i3status config
-    createLink "$env/.config/i3status/config" ".config/i3status/config"
-
-    # picom
-    createLink "$env/.config/picom/picom.conf" ".config/picom/picom.conf"
+    # picom config
+    createLink ".config/picom" ".config/picom"
 
     # polybar config
-    createLink "$env/.config/polybar/launch.sh" ".config/polybar/launch.sh"
-    createLink "$env/.config/polybar/config.ini" ".config/polybar/config.ini"
-
-    # polybar scripts
-    createLink "$env/.config/polybar/scripts" ".config/polybar/scripts"
+    createLink ".config/polybar" ".config/polybar"
 }
 
 initXmonad()
