@@ -13,6 +13,9 @@ if [ -d $HOME/.local/bin ]; then
     PATH=$PATH:$HOME/.local/bin
 fi
 
+if [ -d $HOME/.local/share/gem/ruby/3.0.0/bin ]; then
+    PATH=$PATH:$HOME/.local/share/gem/ruby/3.0.0/bin
+fi
 
 # Define bash prompt
 PROMPT_256_COLOR="\[\e[38;5;37m\][\u\[\033[00m\] \[\e[38;5;174m\]\w\[\e[38;5;37m\]]\$\[\e[00m\] "
