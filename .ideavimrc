@@ -95,3 +95,5 @@ nnoremap `9 :action GotoBookmark9<CR>
 nnoremap ,gt :s/\t/    /g<CR>
 " Split line by symbol ','
 nnoremap ,gs f,lxi<CR>l
+" Insert Arrange-Act-Assert
+nnoremap ,gr a// arrange<CR><CR>// act<CR><CR>// assert<ESC>
