@@ -42,6 +42,9 @@ set_vim_options({
   -- Fix background in tmux
   { key = 't_ut', value = '' },
 
+  -- Add clipboard support
+  { key = 'clipboard', value = 'unnamedplus' },
+
   -- Others
   { key = 'ruler' },
   { key = 'history', value = '256' },
