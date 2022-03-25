@@ -56,19 +56,8 @@ initBash()
 
 initVim()
 {
-    # Create necessary dirs
-    createDirIfNeed ".config/nvim"
-    createDirIfNeed ".config/nvim/lua"
-
-    # Create links to Neovim config files
-    createLink ".config/nvim/init.lua" ".config/nvim/init.lua"
-    createLink ".config/nvim/lua/autocompletion.lua" ".config/nvim/lua/autocompletion.lua"
-    createLink ".config/nvim/lua/helpers.lua" ".config/nvim/lua/helpers.lua"
-    createLink ".config/nvim/lua/lightline.lua" ".config/nvim/lua/lightline.lua"
-    createLink ".config/nvim/lua/lsp.lua" ".config/nvim/lua/lsp.lua"
-    createLink ".config/nvim/lua/nvtree.lua" ".config/nvim/lua/nvtree.lua"
-    createLink ".config/nvim/lua/plugins.lua" ".config/nvim/lua/plugins.lua"
-    createLink ".config/nvim/lua/vim-markdown.lua" ".config/nvim/lua/vim-markdown.lua"
+    # i3 config
+    createLink ".config/nvim" ".config/nvim"
 
     # Create link to IdeaVim plugin config file
     createLink ".ideavimrc" ".ideavimrc"
