@@ -5,6 +5,7 @@ require('lightline')
 require('vim-markdown')
 require('lsp')
 require('autocompletion')
+require('conjure')
 
 set_vim_options({
   { key = 'background', value = 'dark' },
@@ -75,6 +76,9 @@ map_key_bindings({
 
   -- Remap gy to clipboard
   { mode = 'v', key = 'gy', command = '"+y' },
+
+  -- Remap gyl to copy line
+  { key = 'gl', command = '^v$h"+y' },
   
   -- Coment/uncomment
   -- { key = 'gc', command = ':Commentary<CR>' },

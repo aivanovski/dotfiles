@@ -27,4 +27,7 @@ return require('packer').startup(function()
   -- Markdown support
   use 'godlygeek/tabular'
   use 'plasticboy/vim-markdown'
+
+  -- Clojure
+  use 'Olical/conjure'
 end)
