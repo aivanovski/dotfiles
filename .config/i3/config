@@ -47,6 +47,7 @@ for_window [class="SpeedCrunch"] floating enable, resize set 800 600, move posit
 for_window [class="Gnome-system-monitor"] floating enable, resize set 1600 1000, move position center
 for_window [title="Android Emulator*"] floating enable
 for_window [class="Gnome-screenshot"] floating enable
+for_window [title="autokpass-autotype"] floating enable, resize set 2000 800, move position 920 1400
 #for_window [class="firefox"] tabbed enable
 #for_window [class="Xfce4-terminal"] floating enable
 
@@ -95,6 +96,7 @@ bindsym $mod+Shift+e exec "monitor-setup --external"
 bindsym $mod+Shift+b exec "monitor-setup --built-in"
 bindsym $mod+Shift+x exec "kill-process"
 # bindsym $mod+Shift+a exec "adb-start-activity"
+bindsym $mod+Shift+a exec "$term --command /home/aleksey/.local/bin/autokpass.sh --title autokpass-autotype"
 bindsym $mod+Shift+g exec gimp
 bindsym $mod+e exec firefox
 bindsym $mod+Shift+y exec keepassxc
