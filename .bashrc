@@ -18,8 +18,17 @@ if [ -d $HOME/.local/share/gem/ruby/3.0.0/bin ]; then
 fi
 
 # Define bash prompt
-PROMPT_256_COLOR="\[\e[38;5;37m\][\u\[\033[00m\] \[\e[38;5;174m\]\w\[\e[38;5;37m\]]\$\[\e[00m\] "
+function parse_git_dirty {
+  [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit, working tree clean" ]] && echo "*"
+}
+function parse_git_branch {
+  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/(\1$(parse_git_dirty))/"
+}
+PROMPT_256_COLOR=" ╭─\[\e[\033[01;34m\]\u@\h \[\e[38;5;211m\]\w\[\e[\033[38;5;48m\] $(parse_git_branch)\[\e[\033[00m\]\n ╰▶ \$ "
 PROMPT_16_COLOR='\[\033[01;35m\][\u@\h\[\033[00m\] \[\033[0;35m\]\w\[\033[1;35m\]]\$\[\033[00m\] '
+
+# Old prompt
+# PROMPT_256_COLOR="\[\e[38;5;37m\][\u\[\033[00m\] \[\e[38;5;174m\]\w\[\e[38;5;37m\]]\$\[\e[00m\] "
 
 case "$TERM" in
     *"256color"*)
@@ -39,10 +48,10 @@ stty -ixon
 # Alias
 case "$(uname | head -1)" in
     "Darwin")
-        alias ls='gls --color'
-        alias ll='gls -la --color'
-        alias lln='gls -la --color=never'
+        alias ls='lsd --icon never'
+        alias ll='lsd --icon never -la'
         alias mc='mc --nosubshell'
+        alias ctags='/usr/local/Homebrew/Cellar/ctags/5.8_2/bin/ctags'
         ;;
     "Linux")
         alias ls='ls --color'
@@ -78,6 +87,13 @@ alias tk='tmux kill-server'
 if [ "$(uname | head -1)" == 'Darwin' ]; then
     gimp() { command /Applications/GIMP-2.10.app/Contents/MacOS/gimp "$@" > /dev/null 2>&1 & }
     meld() { command /Applications/Meld.app/Contents/MacOS/Meld "$@" > /dev/null 2>&2 & }
+    tm()
+    {
+        tmux kill-server
+        tmux new-session -d -n Ranger ranger && tmux new-window -n Terminal && tmux new-window -n Vim
+        tmux selectw -t 1
+        tmux -2 attach-session -d
+    }
 fi
 
 # Autocomplete
@@ -109,9 +125,6 @@ export VISUAL="nvim"
 
 # bash completion
 case "$(uname | head -1)" in
-    "Darwin")
-        [[ -r "$(brew --prefix)/etc/profile.d/bash_completion.sh" ]] && . "$(brew --prefix)/etc/profile.d/bash_completion.sh"
-        ;;
     "Linux")
         if [ -f /usr/share/bash-completion/bash_completion ]; then
             . /usr/share/bash-completion/bash_completion
@@ -126,9 +139,6 @@ if [ -f /usr/share/fzf/completion.bash ]; then
 fi
 
 case "$(uname | head -1)" in
-    "Darwin")
-        eval $(gdircolors -b $HOME/.dircolors.256)
-        ;;
     "Linux")
         eval $(dircolors -b $HOME/.dircolors.256)
         ;;
