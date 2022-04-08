@@ -24,7 +24,7 @@ function parse_git_dirty {
 function parse_git_branch {
   git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/(\1$(parse_git_dirty))/"
 }
-PROMPT_256_COLOR=" ╭─\[\e[\033[01;34m\]\u@\h \[\e[38;5;211m\]\w\[\e[\033[38;5;48m\] $(parse_git_branch)\[\e[\033[00m\]\n ╰▶ \$ "
+PROMPT_256_COLOR=' ╭─\[\e[\033[01;34m\]\u@\h \[\e[38;5;211m\]\w\[\e[\033[38;5;48m\] $(parse_git_branch)\[\e[\033[00m\]\n ╰▶ \$ '
 PROMPT_16_COLOR='\[\033[01;35m\][\u@\h\[\033[00m\] \[\033[0;35m\]\w\[\033[1;35m\]]\$\[\033[00m\] '
 
 # Old prompt
@@ -48,15 +48,10 @@ stty -ixon
 # Alias
 case "$(uname | head -1)" in
     "Darwin")
-        alias ls='lsd --icon never'
-        alias ll='lsd --icon never -la'
         alias mc='mc --nosubshell'
         alias ctags='/usr/local/Homebrew/Cellar/ctags/5.8_2/bin/ctags'
         ;;
     "Linux")
-        alias ls='ls --color'
-        alias ll='ls -la --color'
-        alias lln='ls -la --color=never'
         alias kee='kpcli --kdb $HOME/Yandex/Workspace/kp/kp.kdbx'
         alias yd='yandex-disk'
         alias ss='sudo systemctl'
@@ -70,6 +65,8 @@ case "$(uname | head -1)" in
         ;;
 esac
 
+alias ls='lsd --icon never'
+alias ll='lsd --icon never -la'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias rg='ranger'
@@ -137,12 +134,6 @@ esac
 if [ -f /usr/share/fzf/completion.bash ]; then
 	. /usr/share/fzf/completion.bash
 fi
-
-case "$(uname | head -1)" in
-    "Linux")
-        eval $(dircolors -b $HOME/.dircolors.256)
-        ;;
-esac
 
 # set vim as manpager
 export MANPAGER="/bin/sh -c \"col -b | nvim -c 'set ft=man ts=8 nomod nolist noma' -\""
