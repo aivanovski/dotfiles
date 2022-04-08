@@ -60,6 +60,7 @@ case "$(uname | head -1)" in
         alias wifi-connect-new='nmcli d wifi connect'
         alias gitbook='docker run -it --rm --entrypoint=/bin/sh -v "$HOME/Yandex/GitBook":/gitbook -p 4000:4000 amontaigu/gitbook'
         alias pacgrep='pacman -Q | grep -i'
+        alias pacfp='pacman -Qq | fzf --preview "pacman -Qil {}" --layout=reverse --bind "enter:execute(pacman -Qil {} | less)"'
         # Rate and sort latest 10 mirrors by download speed and write them to /etc/pacman.d/mirrorlist
         alias reflector-update='reflector --verbose --latest 10 --sort rate --save /etc/pacman.d/mirrorlist'
         ;;
