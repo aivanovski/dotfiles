@@ -17,28 +17,6 @@ if [ -d $HOME/.local/share/gem/ruby/3.0.0/bin ]; then
     PATH=$PATH:$HOME/.local/share/gem/ruby/3.0.0/bin
 fi
 
-# Define bash prompt
-function parse_git_dirty {
-  [[ $(git status 2> /dev/null | tail -n1) != "nothing to commit, working tree clean" ]] && echo "*"
-}
-function parse_git_branch {
-  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e "s/* \(.*\)/(\1$(parse_git_dirty))/"
-}
-PROMPT_256_COLOR='╭─\[\e[\033[01;34m\]\u@\h \[\e[38;5;211m\]\w\[\e[\033[38;5;48m\] $(parse_git_branch)\[\e[\033[00m\]\n╰▶ \$ '
-PROMPT_16_COLOR='\[\033[01;35m\][\u@\h\[\033[00m\] \[\033[0;35m\]\w\[\033[1;35m\]]\$\[\033[00m\] '
-
-# Old prompt
-# PROMPT_256_COLOR="\[\e[38;5;37m\][\u\[\033[00m\] \[\e[38;5;174m\]\w\[\e[38;5;37m\]]\$\[\e[00m\] "
-
-case "$TERM" in
-    *"256color"*)
-        PS1=$PROMPT_256_COLOR;;
-    *"termite"*)
-        PS1=$PROMPT_256_COLOR;;
-    *)
-        PS1=$PROMPT_16_COLOR;;
-esac
-
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
@@ -130,7 +108,12 @@ case "$(uname | head -1)" in
         ;;
 esac
 
-
+# git prompt
+if [ -f /usr/share/git/completion/git-prompt.sh ]; then
+    GIT_PS1_SHOWDIRTYSTATE=1
+    GIT_PS1_SHOWUPSTREAM=1
+    source /usr/share/git/completion/git-prompt.sh
+fi
 # fzf integration
 if [ -f /usr/share/fzf/completion.bash ]; then
 	. /usr/share/fzf/completion.bash
@@ -138,3 +121,16 @@ fi
 
 # set vim as manpager
 export MANPAGER="/bin/sh -c \"col -b | nvim -c 'set ft=man ts=8 nomod nolist noma' -\""
+
+PROMPT_256_COLOR='╭─\[\e[\033[1;36m\]\u@\h \[\e[38;5;211m\]\w\[\e[\033[38;5;48m\] $(__git_ps1 " (%s)")\[\e[\033[00m\]\n╰▶ \$ '
+PROMPT_16_COLOR=' \[\033[32m\]\u@\h\[\033[00m\] \[\033[0;31m\]\w\[\033[1;31m\]\[\033[00m\]\n ▶ \$ '
+
+# Old prompt
+# PROMPT_256_COLOR="\[\e[38;5;37m\][\u\[\033[00m\] \[\e[38;5;174m\]\w\[\e[38;5;37m\]]\$\[\e[00m\] "
+
+case "$TERM" in
+    *"256color"*)
+        PS1=$PROMPT_256_COLOR;;
+    *)
+        PS1=$PROMPT_16_COLOR;;
+esac
