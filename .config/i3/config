@@ -43,11 +43,12 @@ smart_borders on
 for_window [tiling] border pixel 5
 
 ### Set specific window type to applications
-for_window [class="SpeedCrunch"] floating enable, resize set 800 600, move position center
+for_window [class="SpeedCrunch"] floating enable, resize set 1800 900, move position center
 for_window [class="Gnome-system-monitor"] floating enable, resize set 1600 1000, move position center
 for_window [title="Android Emulator*"] floating enable
 for_window [class="Gnome-screenshot"] floating enable
-for_window [title="autokpass-autotype"] floating enable, resize set 2000 800, move position 920 1400
+for_window [title="autokpass-window"] floating enable, resize set 2000 800, move position 920 1400
+for_window [title="stor-window"] floating enable
 #for_window [class="firefox"] tabbed enable
 #for_window [class="Xfce4-terminal"] floating enable
 
@@ -95,11 +96,14 @@ bindsym $mod+Shift+d exec "monitor-setup --setup-env"
 bindsym $mod+Shift+e exec "monitor-setup --external"
 bindsym $mod+Shift+b exec "monitor-setup --built-in"
 bindsym $mod+Shift+x exec "kill-process"
-# bindsym $mod+Shift+a exec "adb-start-activity"
-bindsym $mod+Shift+a exec "$term --command /home/aleksey/.local/bin/autokpass.sh --title autokpass-autotype"
+bindsym $mod+Shift+n exec "$term --command stor --title stor-window"
+bindsym $mod+Shift+a exec "autokpass.sh"
 bindsym $mod+Shift+g exec gimp
 bindsym $mod+e exec firefox
 bindsym $mod+Shift+y exec keepassxc
+
+# For testing
+bindsym $mod+Shift+t exec "autokpass-test.sh"
 
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
