@@ -13,14 +13,6 @@ if [ -d $HOME/.local/bin ]; then
     PATH=$PATH:$HOME/.local/bin
 fi
 
-if [ -d $HOME/.local/share/gem/ruby/3.0.0/bin ]; then
-    PATH=$PATH:$HOME/.local/share/gem/ruby/3.0.0/bin
-fi
-
-if [ -d $HOME/.gem/ruby/2.6.0/bin ]; then
-    PATH=$PATH:$HOME/.gem/ruby/2.6.0/bin
-fi
-
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
@@ -105,6 +97,11 @@ export VISUAL="nvim"
 
 case "$(uname | head -1)" in
     "Darwin")
+        # add ruby gem directory to path
+        if [ -d $HOME/.gem/ruby/2.6.0/bin ]; then
+            PATH=$PATH:$HOME/.gem/ruby/2.6.0/bin
+        fi
+
         # brew
         if [ -f $HOME/.homebrew_profile ]; then
             source $HOME/.homebrew_profile
@@ -116,8 +113,18 @@ case "$(uname | head -1)" in
             GIT_PS1_SHOWUPSTREAM=1
             source "$(brew --prefix git)/etc/bash_completion.d/git-prompt.sh"
         fi
+
+        # expoty JAVA_HOME variable
+        if [ -d /Library/Java/JavaVirtualMachines/zulu-11.jdk/Contents/Home ]; then
+            export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-11.jdk/Contents/Home
+        fi
         ;;
     "Linux")
+        # add ruby gem directory to path
+        if [ -d $HOME/.local/share/gem/ruby/3.0.0/bin ]; then
+            PATH=$PATH:$HOME/.local/share/gem/ruby/3.0.0/bin
+        fi
+
         # git prompt
         if [ -f /usr/share/git/completion/git-prompt.sh ]; then
             GIT_PS1_SHOWDIRTYSTATE=1
