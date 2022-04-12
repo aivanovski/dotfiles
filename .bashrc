@@ -17,13 +17,17 @@ if [ -d $HOME/.local/share/gem/ruby/3.0.0/bin ]; then
     PATH=$PATH:$HOME/.local/share/gem/ruby/3.0.0/bin
 fi
 
+if [ -d $HOME/.gem/ruby/2.6.0/bin ]; then
+    PATH=$PATH:$HOME/.gem/ruby/2.6.0/bin
+fi
+
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
 # Turn off XON/XOFF signals (for Vim)
 stty -ixon
 
-# Alias
+# Aliases
 case "$(uname | head -1)" in
     "Darwin")
         alias mc='mc --nosubshell'
@@ -99,25 +103,39 @@ export HISTFILESIZE=10000
 export EDITOR="nvim"
 export VISUAL="nvim"
 
-# bash completion
 case "$(uname | head -1)" in
+    "Darwin")
+        # brew
+        if [ -f $HOME/.homebrew_profile ]; then
+            source $HOME/.homebrew_profile
+        fi
+
+        # git prompt
+        if [ -f "$(brew --prefix git)/etc/bash_completion.d/git-prompt.sh" ]; then
+            GIT_PS1_SHOWDIRTYSTATE=1
+            GIT_PS1_SHOWUPSTREAM=1
+            source "$(brew --prefix git)/etc/bash_completion.d/git-prompt.sh"
+        fi
+        ;;
     "Linux")
+        # git prompt
+        if [ -f /usr/share/git/completion/git-prompt.sh ]; then
+            GIT_PS1_SHOWDIRTYSTATE=1
+            GIT_PS1_SHOWUPSTREAM=1
+            source /usr/share/git/completion/git-prompt.sh
+        fi
+
+        # bash completion
         if [ -f /usr/share/bash-completion/bash_completion ]; then
-            . /usr/share/bash-completion/bash_completion
+            source /usr/share/bash-completion/bash_completion
+        fi
+
+        # fzf integration
+        if [ -f /usr/share/fzf/completion.bash ]; then
+            source /usr/share/fzf/completion.bash
         fi
         ;;
 esac
-
-# git prompt
-if [ -f /usr/share/git/completion/git-prompt.sh ]; then
-    GIT_PS1_SHOWDIRTYSTATE=1
-    GIT_PS1_SHOWUPSTREAM=1
-    source /usr/share/git/completion/git-prompt.sh
-fi
-# fzf integration
-if [ -f /usr/share/fzf/completion.bash ]; then
-	. /usr/share/fzf/completion.bash
-fi
 
 # set vim as manpager
 export MANPAGER="/bin/sh -c \"col -b | nvim -c 'set ft=man ts=8 nomod nolist noma' -\""
