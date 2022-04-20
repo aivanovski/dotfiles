@@ -44,7 +44,7 @@ set_vim_options({
   { key = 't_ut', value = '' },
 
   -- Add clipboard support
-  { key = 'clipboard', value = 'unnamedplus' },
+  -- { key = 'clipboard', value = 'unnamedplus' },
 
   -- Others
   { key = 'ruler' },
@@ -113,4 +113,5 @@ map_key_bindings({
   { mode = 'v', key = '<C-k>', command = ":m '<-2<CR>gv" },
 })
 
-vim.api.nvim_command('colorscheme night-owl')
+-- vim.api.nvim_command('colorscheme night-owl')
+vim.api.nvim_command('colorscheme monokai_pro')

@@ -16,7 +16,10 @@ return require('packer').startup(function()
   use 'vim-scripts/BufOnly.vim'
   use 'udalov/kotlin-vim'
   use 'tpope/vim-commentary'
+
+  -- Color themes
   use 'haishanh/night-owl.vim'
+  use 'tanvirtin/monokai.nvim'
 
   -- Autocompletion
   use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
