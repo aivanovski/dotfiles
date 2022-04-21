@@ -113,5 +113,5 @@ map_key_bindings({
   { mode = 'v', key = '<C-k>', command = ":m '<-2<CR>gv" },
 })
 
--- vim.api.nvim_command('colorscheme night-owl')
-vim.api.nvim_command('colorscheme monokai_pro')
+vim.api.nvim_command('colorscheme night-owl')
+-- vim.api.nvim_command('colorscheme monokai_pro')
