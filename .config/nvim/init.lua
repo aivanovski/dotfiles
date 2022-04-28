@@ -111,6 +111,11 @@ map_key_bindings({
   { mode = 'i', key = '<C-k>', command = '<Esc>:m .-2<CR>gi' },
   { mode = 'v', key = '<C-j>', command = ":m '>+1<CR>gv" },
   { mode = 'v', key = '<C-k>', command = ":m '<-2<CR>gv" },
+
+  -- Telescope commands
+  { key = '<C-n>', command = ':Telescope find_files<CR>' },
+  { key = '<C-p>', command = ':Telescope live_grep<CR>' },
+  { key = '<C-t>', command = ':Telescope help_tags<CR>' },
 })
 
 vim.api.nvim_command('colorscheme night-owl')
