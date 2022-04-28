@@ -50,7 +50,7 @@ nnoremap ) :action GotoNextError<CR>
 " Copy-Paste
 vnoremap gy "+y
 nnoremap gl ^v$h"+y
-nnoremap gp o<ESC>"+p^
+nnoremap gp "+p
 
 " Code look
 nnoremap ,gp :action EditorToggleShowWhitespaces<CR>
