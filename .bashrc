@@ -49,6 +49,7 @@ alias calendar='cal -m -n 6'
 alias fzfh='cat $HOME/.bash_history | fzf'
 alias findapk='find . -name "*.apk"'
 alias findjar='find . -name "*.jar"'
+alias findfile='find . -name '
 alias vim='nvim'
 
 # Tmux aliases
