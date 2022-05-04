@@ -1,13 +1,11 @@
 return require('packer').startup(function()
-  use 'Xuyuanp/nerdtree-git-plugin'
-  use 'airblade/vim-gitgutter'
+  use 'lewis6991/gitsigns.nvim'
+  -- use 'airblade/vim-gitgutter'
   use 'itchyny/lightline.vim'
   use 'mengelbrecht/lightline-bufferline'
   use 'kyazdani42/nvim-tree.lua'
   use 'kyazdani42/nvim-web-devicons'
   use 'neovim/nvim-lspconfig'
-  -- use 'rust-lang/rust.vim'
-  use 'tpope/vim-fugitive'
   use 'wbthomason/packer.nvim'
   use 'vim-scripts/BufOnly.vim'
   use 'udalov/kotlin-vim'
@@ -17,7 +15,7 @@ return require('packer').startup(function()
 
   -- Color themes
   use 'haishanh/night-owl.vim'
-  use 'tanvirtin/monokai.nvim'
+  -- use 'tanvirtin/monokai.nvim'
 
   -- Autocompletion
   use 'hrsh7th/nvim-cmp' -- Autocompletion plugin

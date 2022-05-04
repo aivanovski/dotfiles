@@ -1,11 +1,12 @@
 require('plugins')
 require('helpers')
-require('nvtree')
-require('lightline')
-require('vim-markdown')
+require('nvim-tree-init')
+require('lightline-init')
+require('vim-markdown-init')
 require('lsp')
 require('autocompletion')
-require('conjure')
+require('conjure-init')
+require('gitsigns-init')
 
 set_vim_options({
   { key = 'background', value = 'dark' },
