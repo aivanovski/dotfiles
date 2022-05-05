@@ -33,8 +33,8 @@ nnoremap gaw :qa<CR>
 nnoremap <C-w>o :action CloseAllEditorsButActive<CR>
 
 " Navigation in general
-nnoremap gj :action Back<CR>
-nnoremap gk :action Forward<CR>
+nnoremap gh :action Back<CR>
+nnoremap gl :action Forward<CR>
 nnoremap } :action NextTab<CR>
 nnoremap { :action PreviousTab<CR>
 
@@ -49,7 +49,7 @@ nnoremap ) :action GotoNextError<CR>
 
 " Copy-Paste
 vnoremap gy "+y
-nnoremap gl ^v$h"+y
+" nnoremap gl ^v$h"+y
 nnoremap gp "+p
 
 " Code look
