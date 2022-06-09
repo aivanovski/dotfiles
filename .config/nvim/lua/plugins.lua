@@ -12,6 +12,7 @@ return require('packer').startup(function()
   use 'tpope/vim-commentary'
   use 'nvim-lua/plenary.nvim'
   use 'nvim-telescope/telescope.nvim'
+  use 'nvim-treesitter/nvim-treesitter'
 
   -- Color themes
   use 'haishanh/night-owl.vim'
