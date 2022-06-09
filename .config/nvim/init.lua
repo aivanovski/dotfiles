@@ -117,6 +117,11 @@ map_key_bindings({
   { key = '<C-n>', command = ':Telescope find_files<CR>' },
   { key = '<C-p>', command = ':Telescope live_grep<CR>' },
   { key = '<C-t>', command = ':Telescope help_tags<CR>' },
+
+  -- Conjure
+  { mode = 'n', key = ',ge', command = ':ConjureEval<CR>' },
+  { mode = 'v', key = 'ge', command = ":'<,'>ConjureEvalVisual<CR>" },
+  { mode = 'n', key = 'ge', command = ':ConjureEvalCurrentForm<CR>' },
 })
 
 vim.api.nvim_command('colorscheme night-owl')
