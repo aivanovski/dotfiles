@@ -63,6 +63,9 @@ nnoremap ,gi :action ImplementMethods<CR>
 nnoremap ,gg :action Generate<CR>
 nnoremap gr :action RenameElement<CR>
 
+" Hierarchy
+nnoremap ,gh :action TypeHierarchy<CR>
+
 " Popups
 nnoremap gm :action FileStructurePopup<CR>
 nnoremap gf :action ParameterInfo<CR>
