@@ -51,6 +51,7 @@ alias findapk='find . -name "*.apk"'
 alias findjar='find . -name "*.jar"'
 alias findfile='find . -name '
 alias vim='nvim'
+alias adbtext='adb shell input text'
 
 # Tmux aliases
 alias ta='tmux attach-session'
