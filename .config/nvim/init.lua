@@ -120,6 +120,7 @@ map_key_bindings({
 
   -- Conjure
   { mode = 'n', key = ',ge', command = ':ConjureEval<CR>' },
+  { mode = 'n', key = ',gw', command = ':ConjureEvalWord<CR>' },
   { mode = 'v', key = 'ge', command = ":'<,'>ConjureEvalVisual<CR>" },
   { mode = 'n', key = 'ge', command = ':ConjureEvalCurrentForm<CR>' },
 })
