@@ -51,10 +51,10 @@ def main
       name = line.split(':')[1].strip
       if name.include? 'internal'
         port = 'IN-'
-        `polybar-msg hook #{HOOK_NAME} #{ICON_INTERNAL}`
+        `polybar-msg action #{HOOK_NAME} #{ICON_INTERNAL}`
       else
         port = 'EX-'
-        `polybar-msg hook #{HOOK_NAME} #{ICON_EXTERNAL}`
+        `polybar-msg action #{HOOK_NAME} #{ICON_EXTERNAL}`
       end
     end
   }
