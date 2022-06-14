@@ -13,6 +13,7 @@ return require('packer').startup(function()
   use 'nvim-lua/plenary.nvim'
   use 'nvim-telescope/telescope.nvim'
   use 'nvim-treesitter/nvim-treesitter'
+  use "lukas-reineke/indent-blankline.nvim"
 
   -- Color themes
   use 'haishanh/night-owl.vim'

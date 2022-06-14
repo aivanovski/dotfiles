@@ -127,3 +127,4 @@ map_key_bindings({
 
 vim.api.nvim_command('colorscheme night-owl')
 -- vim.api.nvim_command('colorscheme monokai_pro')
+require('indent-blankline-init')
