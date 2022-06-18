@@ -119,8 +119,8 @@ map_key_bindings({
   { key = '<C-t>', command = ':Telescope help_tags<CR>' },
 
   -- Conjure
-  { mode = 'n', key = ',ge', command = ':ConjureEval<CR>' },
-  { mode = 'n', key = ',gw', command = ':ConjureEvalWord<CR>' },
+  { mode = 'n', key = ',ge', command = ':ConjureEvalWord<CR>' },
+  { mode = 'n', key = ',gf', command = ':ConjureEvalFile<CR>' },
   { mode = 'v', key = 'ge', command = ":'<,'>ConjureEvalVisual<CR>" },
   { mode = 'n', key = 'ge', command = ':ConjureEvalCurrentForm<CR>' },
 })
