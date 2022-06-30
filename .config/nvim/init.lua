@@ -90,6 +90,9 @@ map_key_bindings({
   -- Delete all
   { key = 'dia', command = 'gg^dG<CR>' },
 
+  -- Select all
+  { mode = 'v', key = 'ia', command = 'gg^G' },
+
   -- Remap :tag and :po commands (jump to tag and go back)
   { key = 'gd', command = '<C-]>' },
   { key = 'gb', command = ':po<CR>' },
