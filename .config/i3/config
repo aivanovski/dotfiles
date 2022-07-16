@@ -47,6 +47,7 @@ for_window [title="Android Emulator*"] floating enable
 for_window [class="Gnome-screenshot"] floating enable
 for_window [title="autokpass-window"] floating enable, resize set 2000 800, move position 920 1400
 for_window [title="stor-window"] floating enable
+for_window [title="kill-fzf-window"] floating enable
 #for_window [class="firefox"] tabbed enable
 #for_window [class="Xfce4-terminal"] floating enable
 
@@ -93,7 +94,7 @@ bindsym $mod+Shift+i exec "config-menu"
 bindsym $mod+Shift+d exec "monitor-setup --setup-env"
 bindsym $mod+Shift+e exec "monitor-setup --external"
 bindsym $mod+Shift+b exec "monitor-setup --built-in"
-bindsym $mod+Shift+x exec "kill-process"
+bindsym $mod+Shift+x exec "$term --command 'kill-fzf' --title kill-fzf-window"
 bindsym $mod+Shift+n exec "$term --command 'stor' --title stor-window"
 bindsym $mod+Shift+a exec "kp"
 bindsym $mod+Shift+g exec gimp
