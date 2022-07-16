@@ -49,6 +49,7 @@ local cmp = require 'cmp'
   },
   sources = {
     { name = 'nvim_lsp' },
+    { name = 'path' },
     { name = 'luasnip' },
   },
 }
