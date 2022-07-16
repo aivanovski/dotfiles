@@ -1,6 +1,7 @@
 -- Add additional capabilities supported by nvim-cmp
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+local lspkind = require('lspkind')
 
 -- luasnip setup
 local luasnip = require 'luasnip'
@@ -51,5 +52,16 @@ local cmp = require 'cmp'
     { name = 'nvim_lsp' },
     { name = 'path' },
     { name = 'luasnip' },
+  },
+
+  formatting = {
+    format = lspkind.cmp_format {
+      with_text = true,
+      menu = {
+        nvim_lsp = "[LSP]",
+        luasnip = "[snip]",
+        path = "[path]"
+      },
+    },
   },
 }
