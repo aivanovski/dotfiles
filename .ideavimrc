@@ -24,6 +24,10 @@ nnoremap <c-q> <c-v>
 nnoremap H [mzz
 nnoremap L ]mzz
 
+" Select/delete all content
+nnoremap dia gg^dG<CR>
+vnoremap via gg^G
+
 " Remap gn to :noh (hide highlight)
 nnoremap gn :noh<CR>
 
