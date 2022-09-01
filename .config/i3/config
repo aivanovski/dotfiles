@@ -48,6 +48,7 @@ for_window [class="Gnome-screenshot"] floating enable
 for_window [title="autokpass-window"] floating enable, resize set 2000 800, move position 920 1400
 for_window [title="stor-window"] floating enable
 for_window [title="kill-fzf-window"] floating enable
+for_window [class="Pavucontrol"] floating enable, resize set 1600 800, move position center
 #for_window [class="firefox"] tabbed enable
 #for_window [class="Xfce4-terminal"] floating enable
 
@@ -100,6 +101,7 @@ bindsym $mod+Shift+a exec "kp"
 bindsym $mod+Shift+g exec gimp
 bindsym $mod+e exec firefox
 bindsym $mod+Shift+y exec keepassxc
+bindsym $mod+Shift+u exec pavucontrol
 
 # For debugging purposess (should be deleted later)
 bindsym $mod+Shift+t exec "autokpass-test.sh"
