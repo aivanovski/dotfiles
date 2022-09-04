@@ -7,6 +7,7 @@ require('lsp')
 require('autocompletion')
 require('conjure-init')
 require('gitsigns-init')
+require('telescope-init')
 
 set_vim_options({
   { key = 'background', value = 'dark' },
