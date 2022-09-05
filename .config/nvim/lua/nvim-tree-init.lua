@@ -66,14 +66,14 @@ require'nvim-tree'.setup {
       },
     },
     icons = {
-      webdev_colors = true,
+      webdev_colors = false,
       git_placement = "before",
       padding = " ",
       symlink_arrow = " ➛ ",
       show = {
         file = false,
         folder = false,
-        folder_arrow = true,
+        folder_arrow = false,
         git = true,
       },
       glyphs = {
