@@ -46,7 +46,8 @@ for_window [class="Gnome-system-monitor"] floating enable, resize set 1600 1000,
 for_window [title="Android Emulator*"] floating enable
 for_window [class="Gnome-screenshot"] floating enable
 for_window [title="autokpass-window"] floating enable, resize set 2000 800, move position 920 1400
-for_window [title="stor-window"] floating enable
+for_window [title="Autokpass"] floating enable, resize set 2000 800, move position 920 1400
+for_window [title="stor-window"] floating enable, resize set 2600 2000, move position 620 200
 for_window [title="kill-fzf-window"] floating enable
 for_window [class="Pavucontrol"] floating enable, resize set 1600 800, move position center
 #for_window [class="firefox"] tabbed enable
@@ -98,6 +99,7 @@ bindsym $mod+Shift+b exec "monitor-setup --built-in"
 bindsym $mod+Shift+x exec "$term --command 'kill-fzf' --title kill-fzf-window"
 bindsym $mod+Shift+n exec "$term --command 'stor' --title stor-window"
 bindsym $mod+Shift+a exec "kp"
+bindsym $mod+Shift+o exec "$term --command 'nvim $(fzf)'"
 bindsym $mod+Shift+g exec gimp
 bindsym $mod+e exec firefox
 bindsym $mod+Shift+y exec keepassxc
@@ -236,7 +238,7 @@ for_window [class="gimp"] move to workspace $ws5
 for_window [class="code-oss"] move to workspace $ws5
 for_window [class="VSCodium"] move to workspace $ws5
 for_window [class="SmartGit"] move to workspace $ws9
-for_window [class="Chromium"] move to workspace $ws2
+# for_window [class="Chromium"] move to workspace $ws2
 for_window [class="Google-chrome"] move to workspace $ws6
 for_window [class="Gimp"] move to workspace $ws6
 for_window [class="Transmission-gtk"] move to workspace $ws6
