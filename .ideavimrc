@@ -105,6 +105,9 @@ nnoremap `9 :action GotoBookmark9<CR>
 
 " Replace all tabs in current line
 nnoremap ,gt :s/\t/    /g<CR>
+" Replace all 4-whitespaces with tabs in current line
+nnoremap ,gm :s/    /\t/g<CR>
+
 " Split line by symbol ','
 nnoremap ,gs f,lxi<CR>l
 " Insert Arrange-Act-Assert
