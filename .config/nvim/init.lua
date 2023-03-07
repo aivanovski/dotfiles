@@ -3,7 +3,7 @@ require('helpers')
 require('nvim-tree-init')
 require('lightline-init')
 require('vim-markdown-init')
-require('lsp')
+require('lsp-init')
 require('autocompletion')
 require('conjure-init')
 require('gitsigns-init')
@@ -123,10 +123,12 @@ map_key_bindings({
   { key = '<C-t>', command = ':Telescope help_tags<CR>' },
 
   -- Conjure
-  { mode = 'n', key = ',ge', command = ':ConjureEvalWord<CR>' },
-  { mode = 'n', key = ',gf', command = ':ConjureEvalFile<CR>' },
   { mode = 'v', key = 'ge', command = ":'<,'>ConjureEvalVisual<CR>" },
-  { mode = 'n', key = 'ge', command = ':ConjureEvalCurrentForm<CR>' },
+  { key = ',ge', command = ':ConjureEvalWord<CR>' },
+  { key = ',gf', command = ':ConjureEvalFile<CR>' },
+  { key = 'ge', command = ':ConjureEvalCurrentForm<CR>' },
+  { key = ',gv', command = ":ConjureLogVSplit<CR>" },
+  { key = ',gt', command = ":ConjureLogToggle<CR>" },
 })
 
 vim.api.nvim_command('colorscheme night-owl')
