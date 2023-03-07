@@ -104,6 +104,7 @@ bindsym $mod+Shift+g exec gimp
 bindsym $mod+e exec firefox
 bindsym $mod+Shift+y exec keepassxc
 bindsym $mod+Shift+u exec pavucontrol
+bindsym $mod+Ctrl+u exec umlaut-menu
 
 # For debugging purposess (should be deleted later)
 bindsym $mod+Shift+t exec "autokpass-test.sh"
