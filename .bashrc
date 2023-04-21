@@ -102,6 +102,12 @@ case "$(uname | head -1)" in
         if [ -d $HOME/.gem/ruby/2.6.0/bin ]; then
             PATH=$PATH:$HOME/.gem/ruby/2.6.0/bin
         fi
+        if [ -d $HOME/.gem/ruby/2.7.0/bin ]; then
+            PATH=$PATH:$HOME/.gem/ruby/2.7.0/bin
+        fi
+
+        export LANG=en_US.UTF-8
+        export LC_ALL=en_US.UTF-8
 
         # brew
         if [ -f $HOME/.homebrew_profile ]; then
@@ -115,10 +121,16 @@ case "$(uname | head -1)" in
             source "$(brew --prefix git)/etc/bash_completion.d/git-prompt.sh"
         fi
 
+        # Setup rbenv for ruby
+        eval "$(rbenv init - bash)"
+
         # expoty JAVA_HOME variable
-        if [ -d /Library/Java/JavaVirtualMachines/zulu-11.jdk/Contents/Home ]; then
-            export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-11.jdk/Contents/Home
+        if [ -d /Users/ivaali/bin/zulu-11.jdk/Contents/Home ]; then
+            export JAVA_HOME=/Users/ivaali/bin/zulu-11.jdk/Contents/Home
         fi
+
+        # export JAVA_HOME=/usr/local/Homebrew/Cellar/openjdk@17/17.0.6
+        # export JAVA_HOME=/usr/local/Homebrew/Cellar/openjdk/20
         ;;
     "Linux")
         # add ruby gem directory to path
