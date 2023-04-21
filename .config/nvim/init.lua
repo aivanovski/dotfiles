@@ -8,6 +8,7 @@ require('autocompletion')
 require('conjure-init')
 require('gitsigns-init')
 require('telescope-init')
+require('indent-blankline-init')
 
 set_vim_options({
   { key = 'background', value = 'dark' },
@@ -131,6 +132,4 @@ map_key_bindings({
   { key = ',gt', command = ":ConjureLogToggle<CR>" },
 })
 
-vim.api.nvim_command('colorscheme night-owl')
--- vim.api.nvim_command('colorscheme monokai_pro')
-require('indent-blankline-init')
+vim.api.nvim_command('colorscheme nightfox')

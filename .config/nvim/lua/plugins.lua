@@ -16,8 +16,7 @@ return require('packer').startup(function()
   use "lukas-reineke/indent-blankline.nvim"
 
   -- Color themes
-  use 'haishanh/night-owl.vim'
-  -- use 'tanvirtin/monokai.nvim'
+  use 'EdenEast/nightfox.nvim'
 
   -- Autocompletion
   use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
