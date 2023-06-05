@@ -65,6 +65,7 @@ map_key_bindings({
   { key = '<S-Tab>', command = '<C-w>w' },
   { key = '<S-UP>', command = ':tabnew<CR>' },
   { key = 'gt', command = ':NvimTreeToggle<CR>' },
+  { key = ',gt', command = ':NvimTreeFindFileToggle<CR>' },
   { key = '<C-p>', command = ':Files<CR>' },
 
   -- Remap { and } for quick buffer switching
@@ -119,8 +120,8 @@ map_key_bindings({
   { mode = 'v', key = '<C-k>', command = ":m '<-2<CR>gv" },
 
   -- Telescope commands
-  { key = '<C-n>', command = ':Telescope find_files<CR>' },
-  { key = '<C-p>', command = ':Telescope live_grep<CR>' },
+  { key = '<C-s>', command = ':Telescope find_files<CR>' },
+  { key = '<C-r>', command = ':Telescope live_grep<CR>' },
   { key = '<C-t>', command = ':Telescope help_tags<CR>' },
 
   -- Conjure
@@ -129,7 +130,7 @@ map_key_bindings({
   { key = ',gf', command = ':ConjureEvalFile<CR>' },
   { key = 'ge', command = ':ConjureEvalCurrentForm<CR>' },
   { key = ',gv', command = ":ConjureLogVSplit<CR>" },
-  { key = ',gt', command = ":ConjureLogToggle<CR>" },
+  -- { key = ',gt', command = ":ConjureLogToggle<CR>" },
 })
 
 vim.api.nvim_command('colorscheme nightfox')
