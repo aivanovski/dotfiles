@@ -66,7 +66,6 @@ map_key_bindings({
   { key = '<S-UP>', command = ':tabnew<CR>' },
   { key = 'gt', command = ':NvimTreeToggle<CR>' },
   { key = ',gt', command = ':NvimTreeFindFileToggle<CR>' },
-  { key = '<C-p>', command = ':Files<CR>' },
 
   -- Remap { and } for quick buffer switching
   { key = '{', command = ':bp<CR>' },
@@ -120,8 +119,8 @@ map_key_bindings({
   { mode = 'v', key = '<C-k>', command = ":m '<-2<CR>gv" },
 
   -- Telescope commands
-  { key = '<C-s>', command = ':Telescope find_files<CR>' },
-  { key = '<C-r>', command = ':Telescope live_grep<CR>' },
+  { key = '<C-n>', command = ':Telescope find_files<CR>' },
+  { key = '<C-p>', command = ':Telescope live_grep<CR>' },
   { key = '<C-t>', command = ':Telescope help_tags<CR>' },
 
   -- Conjure
