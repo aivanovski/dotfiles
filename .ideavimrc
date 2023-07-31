@@ -47,8 +47,8 @@ nnoremap go :action GotoDeclaration<CR>
 nnoremap gi :action GotoImplementation<CR>
 nnoremap gu :action GotoSuperMethod<CR>
 nnoremap gq :action QuickImplementations<CR>
-nnoremap ge :action FindUsages<CR>
-nnoremap ,ge :action ShowUsages<CR>
+nnoremap ge :action ShowUsages<CR>
+nnoremap ,ge :action FindUsages<CR>
 nnoremap ( :action GotoPreviousError<CR>
 nnoremap ) :action GotoNextError<CR>
 
