@@ -51,6 +51,7 @@ alias findjar='find . -name "*.jar"'
 alias findfile='find . -name '
 alias vim='nvim'
 alias adbtext='adb shell input text'
+alias coverage-report='find . -name "index.html" | grep "coverage/index.html" | xargs firefox'
 
 # Tmux aliases
 alias ta='tmux attach-session'
