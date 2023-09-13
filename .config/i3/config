@@ -91,7 +91,7 @@ bindsym $mod+Shift+s exec gnome-screenshot -i
 # bindsym $mod+Shift+a exec "gnome-screenshot --area --file \"$HOME/Pictures/Screenshot $(date +'%Y-%m-%d %H-%M-%S').png\""
 bindsym $mod+Shift+c exec speedcrunch
 bindsym $mod+q exec "power-menu"
-bindsym $mod+Shift+i exec "config-menu"
+bindsym $mod+Shift+i exec "config-menu.clj"
 bindsym $mod+Shift+d exec "monitor-setup --setup-env"
 bindsym $mod+Shift+e exec "monitor-setup --external"
 bindsym $mod+Shift+b exec "monitor-setup --built-in"
@@ -103,7 +103,7 @@ bindsym $mod+Shift+g exec gimp
 bindsym $mod+e exec firefox
 bindsym $mod+Shift+y exec keepassxc
 bindsym $mod+Shift+u exec pavucontrol
-bindsym $mod+Ctrl+u exec umlaut-menu
+bindsym $mod+Ctrl+u exec umlaut-menu.clj
 
 # For debugging purposess (should be deleted later)
 bindsym $mod+Shift+t exec "autokpass-test.sh"
