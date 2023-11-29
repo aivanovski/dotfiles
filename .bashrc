@@ -24,6 +24,7 @@ case "$(uname | head -1)" in
     "Darwin")
         alias mc='mc --nosubshell'
         alias ctags='/usr/local/Homebrew/Cellar/ctags/5.8_2/bin/ctags'
+        alias calendar='cal -A 5'
         ;;
     "Linux")
         alias kee='kpcli --kdb $HOME/Yandex/Workspace/kp/kp.kdbx'
@@ -37,6 +38,7 @@ case "$(uname | head -1)" in
         alias pacfp='pacman -Qq | fzf --preview "pacman -Qil {}" --layout=reverse --bind "enter:execute(pacman -Qil {} | less)"'
         # Rate and sort latest 10 mirrors by download speed and write them to /etc/pacman.d/mirrorlist
         alias reflector-update='reflector --verbose --latest 10 --sort rate --save /etc/pacman.d/mirrorlist'
+        alias calendar='cal -m -n 6'
         ;;
 esac
 
@@ -44,7 +46,6 @@ alias ls='lsd --icon never'
 alias ll='lsd --icon never -la'
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
-alias calendar='cal -m -n 6'
 alias fzfh='cat $HOME/.bash_history | fzf'
 alias findapk='find . -name "*.apk"'
 alias findjar='find . -name "*.jar"'
@@ -107,6 +108,14 @@ case "$(uname | head -1)" in
             PATH=$PATH:$HOME/.gem/ruby/2.7.0/bin
         fi
 
+        if [ -d $HOME/Library/Python/3.9/bin ]; then
+            PATH=$PATH:$HOME/Library/Python/3.9/bin
+        fi
+
+        if [ -f $HOME/bin/android-sdk/platform-tools/adb ]; then
+            export ADB=$HOME/bin/android-sdk/platform-tools/adb 
+        fi
+
         export LANG=en_US.UTF-8
         export LC_ALL=en_US.UTF-8
 
@@ -126,12 +135,29 @@ case "$(uname | head -1)" in
         eval "$(rbenv init - bash)"
 
         # expoty JAVA_HOME variable
-        if [ -d /Users/ivaali/bin/zulu-11.jdk/Contents/Home ]; then
-            export JAVA_HOME=/Users/ivaali/bin/zulu-11.jdk/Contents/Home
+        # if [ -d /Users/ivaali/bin/zulu-11.jdk/Contents/Home ]; then
+        #     export JAVA_HOME=/Users/ivaali/bin/zulu-11.jdk/Contents/Home
+        # fi
+
+        # Setup SDKMAN if it exists
+        if [ -f $HOME/.sdkman/bin/sdkman-init.sh ]; then
+            source $HOME/.sdkman/bin/sdkman-init.sh
         fi
 
-        # export JAVA_HOME=/usr/local/Homebrew/Cellar/openjdk@17/17.0.6
-        # export JAVA_HOME=/usr/local/Homebrew/Cellar/openjdk/20
+        if [ -d $HOME/Library/Java/JavaVirtualMachines/zulu-11.jdk/Contents/Home ]; then
+            export JDK11=$HOME/Library/Java/JavaVirtualMachines/zulu-11.jdk/Contents/Home
+        else
+            echo "JDK 11 not found"
+        fi
+
+        if [ -d $HOME/Library/Java/JavaVirtualMachines/azul-17.0.6/Contents/Home ]; then
+            export JDK17=$HOME/Library/Java/JavaVirtualMachines/azul-17.0.6/Contents/Home
+        else
+            echo "JDK 17 not found"
+        fi
+
+        # Requires to run Compose applications
+        # export DYLD_LIBRARY_PATH=/usr/local/Homebrew/lib:$DYLD_LIBRARY_PATH
         ;;
     "Linux")
         # add ruby gem directory to path
