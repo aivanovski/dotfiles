@@ -25,6 +25,7 @@ case "$(uname | head -1)" in
         alias mc='mc --nosubshell'
         alias ctags='/usr/local/Homebrew/Cellar/ctags/5.8_2/bin/ctags'
         alias calendar='cal -A 5'
+        alias coverage-report='find . -name "index.html" | grep "coverage/index.html" | xargs open'
         ;;
     "Linux")
         alias kee='kpcli --kdb $HOME/Yandex/Workspace/kp/kp.kdbx'
@@ -39,6 +40,7 @@ case "$(uname | head -1)" in
         # Rate and sort latest 10 mirrors by download speed and write them to /etc/pacman.d/mirrorlist
         alias reflector-update='reflector --verbose --latest 10 --sort rate --save /etc/pacman.d/mirrorlist'
         alias calendar='cal -m -n 6'
+        alias coverage-report='find . -name "index.html" | grep "coverage/index.html" | xargs firefox'
         ;;
 esac
 
@@ -52,7 +54,6 @@ alias findjar='find . -name "*.jar"'
 alias findfile='find . -name '
 alias vim='nvim'
 alias adbtext='adb shell input text'
-alias coverage-report='find . -name "index.html" | grep "coverage/index.html" | xargs firefox'
 
 # Tmux aliases
 alias ta='tmux attach-session'
