@@ -1,10 +1,7 @@
 return require('packer').startup(function()
   use 'lewis6991/gitsigns.nvim'
-  -- use 'airblade/vim-gitgutter'
-  use 'itchyny/lightline.vim'
-  use 'mengelbrecht/lightline-bufferline'
-  use 'kyazdani42/nvim-tree.lua'
-  use 'kyazdani42/nvim-web-devicons'
+  use 'nvim-tree/nvim-tree.lua'
+  use 'nvim-tree/nvim-web-devicons'
   use 'neovim/nvim-lspconfig'
   use 'wbthomason/packer.nvim'
   use 'vim-scripts/BufOnly.vim'
@@ -13,7 +10,10 @@ return require('packer').startup(function()
   use 'nvim-lua/plenary.nvim'
   use 'nvim-telescope/telescope.nvim'
   use 'nvim-treesitter/nvim-treesitter'
-  use "lukas-reineke/indent-blankline.nvim"
+  use 'lukas-reineke/indent-blankline.nvim'
+  use 'nvim-lualine/lualine.nvim'
+  use 'akinsho/bufferline.nvim'
+  use 'linrongbin16/lsp-progress.nvim'
 
   -- Color themes
   use 'EdenEast/nightfox.nvim'
@@ -32,4 +32,7 @@ return require('packer').startup(function()
 
   -- Clojure
   use 'Olical/conjure'
+
+  -- Scala
+  use 'scalameta/nvim-metals'
 end)

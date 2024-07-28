@@ -1,7 +1,6 @@
 require('plugins')
 require('helpers')
 require('nvim-tree-init')
-require('lightline-init')
 require('vim-markdown-init')
 require('lsp-init')
 require('autocompletion')
@@ -9,6 +8,10 @@ require('conjure-init')
 require('gitsigns-init')
 require('telescope-init')
 require('indent-blankline-init')
+require('nvim-metails-init')
+require('lualine-init')
+require('lsp-progress-init')
+require('bufferline-init')
 
 set_vim_options({
   { key = 'background', value = 'dark' },
