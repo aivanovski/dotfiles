@@ -13,6 +13,10 @@ if [ -d $HOME/.local/bin ]; then
     PATH=$PATH:$HOME/.local/bin
 fi
 
+if [ -d $HOME/.maestro/bin ]; then
+    export PATH=$PATH:$HOME/.maestro/bin
+fi
+
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
@@ -118,6 +122,10 @@ case "$(uname | head -1)" in
             export ADB=$HOME/bin/android-sdk/platform-tools/adb 
         fi
 
+        if [ -d $HOME/bin/android-sdk ]; then
+            export ANDROID_HOME=$HOME/bin/android-sdk
+        fi
+
         export LANG=en_US.UTF-8
         export LC_ALL=en_US.UTF-8
 
@@ -136,11 +144,6 @@ case "$(uname | head -1)" in
         # Setup rbenv for ruby
         eval "$(rbenv init - bash)"
 
-        # expoty JAVA_HOME variable
-        # if [ -d /Users/ivaali/bin/zulu-11.jdk/Contents/Home ]; then
-        #     export JAVA_HOME=/Users/ivaali/bin/zulu-11.jdk/Contents/Home
-        # fi
-
         # Setup SDKMAN if it exists
         if [ -f $HOME/.sdkman/bin/sdkman-init.sh ]; then
             source $HOME/.sdkman/bin/sdkman-init.sh
@@ -152,10 +155,20 @@ case "$(uname | head -1)" in
             echo "JDK 11 not found"
         fi
 
-        if [ -d $HOME/Library/Java/JavaVirtualMachines/azul-17.0.6/Contents/Home ]; then
-            export JDK17=$HOME/Library/Java/JavaVirtualMachines/azul-17.0.6/Contents/Home
+        if [ -d $HOME/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home ]; then
+            export JDK17=$HOME/Library/Java/JavaVirtualMachines/zulu-17.jdk/Contents/Home
         else
             echo "JDK 17 not found"
+        fi
+
+        if [ -d $HOME/.sdkman/candidates/java/21.0.3-zulu/zulu-21.jdk/Contents/Home ]; then
+            export JDK21=$HOME/.sdkman/candidates/java/21.0.3-zulu/zulu-21.jdk/Contents/Home
+        else
+            echo "JDK 21 not found"
+        fi
+
+        if [ -f $HOME/.cargo/env ]; then
+            source $HOME/.cargo/env
         fi
 
         # Requires to run Compose applications
