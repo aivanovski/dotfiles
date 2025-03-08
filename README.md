@@ -7,3 +7,4 @@ My desktop config for i3wm + polybar and dotfiles
 [i3 config](home/.config/i3/config)
 
 [Polybar config](home/.config/polybar/config.ini) Based on [polybar-themes](https://github.com/adi1090x/polybar-themes)
+
