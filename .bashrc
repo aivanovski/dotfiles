@@ -30,7 +30,7 @@ case "$(uname | head -1)" in
         alias ctags='/usr/local/Homebrew/Cellar/ctags/5.8_2/bin/ctags'
         alias calendar='cal -A 5'
         alias coverage-report='find . -name "index.html" | grep "coverage/index.html" | xargs open'
-        alias sha256sum='shasum -a 256'
+        # alias sha256sum='shasum -a 256'
         ;;
     "Linux")
         alias kee='kpcli --kdb $HOME/Yandex/Workspace/kp/kp.kdbx'
@@ -59,6 +59,7 @@ alias findjar='find . -name "*.jar"'
 alias findfile='find . -name '
 alias vim='nvim'
 alias adbtext='adb shell input text'
+alias kp-diff-log='git log -p --ext-diff'
 
 # Tmux aliases
 alias ta='tmux attach-session'
