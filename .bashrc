@@ -133,6 +133,9 @@ case "$(uname | head -1)" in
         if [ -f $HOME/.homebrew_profile ]; then
             source $HOME/.homebrew_profile
         fi
+        if [ -f /opt/homebrew/bin/brew ]; then
+            eval "$(/opt/homebrew/bin/brew shellenv)"
+        fi
 
         # git prompt
         if [ -f "$(brew --prefix git)/etc/bash_completion.d/git-prompt.sh" ]; then
