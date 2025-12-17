@@ -37,7 +37,7 @@ set_vim_options({
   { key = 'splitright' },
 
   -- Encoding
-  { key = 'termencoding', value = 'utf-8' },
+  -- { key = 'termencoding', value = 'utf-8' },
   { key = 'fileencoding', value = 'utf-8' },
   { key = 'encoding', value = 'utf-8' },
 
@@ -56,7 +56,7 @@ set_vim_options({
   { key = 'ruler' },
   { key = 'history', value = '256' },
   { key = 'undolevels', value = '2048' },
-  { key = 'pastetoggle', value = '<F10>' },
+  -- { key = 'pastetoggle', value = '<F10>' },
   { key = 'ttimeoutlen', value = '10' },
   { key = 'laststatus', value = '2' },
   { key = 'number' },
