@@ -20,7 +20,7 @@ help()
     echo "-i --i3wm             init i3/config and configs for i3status and polybar"
     echo "-t --other            init .dircolors.256"
     echo "-x --xmonad           init Xmonad config"
-    echo "-a --alacritty        init .config/alacritty/alacritty.yml"
+    echo "-a --alacritty        init .config/alacritty/alacritty.toml"
     echo "-u --tmux             init .config/tmux/tmux.conf"
     echo "-r --rofi             init .config/rofi/config.rasi"
 }
@@ -75,7 +75,7 @@ initAlacritty()
     env=$(getEnvironmentVariable)
 
     createDirIfNeed ".config/alacritty"
-    createLink "$env/.config/alacritty/alacritty.yml" ".config/alacritty/alacritty.yml"
+    createLink "$env/.config/alacritty/alacritty.toml" ".config/alacritty/alacritty.toml"
 }
 
 initTmux()

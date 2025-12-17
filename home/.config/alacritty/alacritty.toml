@@ -1,0 +1,30 @@
+[env]
+TERM = "xterm-256color"
+
+[terminal]
+shell = "/opt/homebrew/bin/bash"
+
+[window]
+padding.x = 10
+padding.y = 10
+
+opacity = 0.94
+blur = true
+
+option_as_alt = "Both"
+
+[font]
+size = 16
+
+[keyboard]
+# Next tab: Ctrl+Tab
+[[keyboard.bindings]]
+key = "Tab"
+mods = "Control"
+action = "SelectNextTab"
+
+# Previous tab: Ctrl+Shift+Tab
+[[keyboard.bindings]]
+key = "Tab"
+mods = "Control|Shift"
+action = "SelectPreviousTab"
