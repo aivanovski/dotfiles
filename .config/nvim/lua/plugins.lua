@@ -31,8 +31,11 @@ return require('packer').startup(function()
   use 'plasticboy/vim-markdown'
 
   -- Clojure
-  use 'Olical/conjure'
+  -- use 'Olical/conjure'
 
   -- Scala
   use 'scalameta/nvim-metals'
+
+  -- Log highlighting
+  use 'mtdl9/vim-log-highlighting'
 end)
