@@ -1,5 +1,3 @@
-local nvim_lsp = require('lspconfig')
-
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
@@ -35,12 +33,13 @@ end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'solargraph', 'kotlin_language_server', 'clojure_lsp', 'bashls', 'tsserver', 'pyright', 'rust_analyzer' }
+local servers = { 'solargraph', 'kotlin_lsp', 'clojure_lsp', 'bashls', 'ts_ls', 'pyright', 'rust_analyzer' }
 for _, lsp in ipairs(servers) do
-  nvim_lsp[lsp].setup {
+  vim.lsp.config(lsp, {
     on_attach = on_attach,
     flags = {
       debounce_text_changes = 150,
     }
-  }
+  })
+  vim.lsp.enable(lsp)
 end
