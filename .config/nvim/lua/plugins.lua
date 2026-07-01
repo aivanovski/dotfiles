@@ -1,41 +1,81 @@
-return require('packer').startup(function()
-  use 'lewis6991/gitsigns.nvim'
-  use 'nvim-tree/nvim-tree.lua'
-  use 'nvim-tree/nvim-web-devicons'
-  use 'neovim/nvim-lspconfig'
-  use 'wbthomason/packer.nvim'
-  use 'vim-scripts/BufOnly.vim'
-  use 'udalov/kotlin-vim'
-  use 'tpope/vim-commentary'
-  use 'nvim-lua/plenary.nvim'
-  use 'nvim-telescope/telescope.nvim'
-  use 'nvim-treesitter/nvim-treesitter'
-  use 'lukas-reineke/indent-blankline.nvim'
-  use 'nvim-lualine/lualine.nvim'
-  use 'akinsho/bufferline.nvim'
-  use 'linrongbin16/lsp-progress.nvim'
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+
+if not vim.uv.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable",
+    lazypath,
+  })
+end
+
+vim.opt.rtp:prepend(lazypath)
+
+require("lazy").setup({
+  { "lewis6991/gitsigns.nvim" },
+  {
+    "nvim-tree/nvim-tree.lua",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+  },
+  { "neovim/nvim-lspconfig" },
+  { "vim-scripts/BufOnly.vim" },
+  { "udalov/kotlin-vim" },
+  { "tpope/vim-commentary" },
+  { "nvim-lua/plenary.nvim" },
+  {
+    "nvim-telescope/telescope.nvim",
+    dependencies = { "nvim-lua/plenary.nvim" },
+  },
+  {
+    "nvim-treesitter/nvim-treesitter",
+    build = ":TSUpdate",
+  },
+  { "lukas-reineke/indent-blankline.nvim" },
+  {
+    "nvim-lualine/lualine.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+  },
+  {
+    "akinsho/bufferline.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
+  },
+  { "linrongbin16/lsp-progress.nvim" },
 
   -- Color themes
-  use 'EdenEast/nightfox.nvim'
+  { "EdenEast/nightfox.nvim" },
 
   -- Autocompletion
-  use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
-  use 'hrsh7th/cmp-nvim-lsp' -- LSP source for nvim-cmp
-  use 'hrsh7th/cmp-path' -- Autocompletions for files
-  use 'onsails/lspkind.nvim' -- Autoformatting suggestions in nvim-cmp
-  use 'saadparwaiz1/cmp_luasnip' -- Snippets source for nvim-cmp
-  use 'L3MON4D3/LuaSnip' -- Snippets plugin
+  {
+    "hrsh7th/nvim-cmp",
+    dependencies = {
+      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-path",
+      "onsails/lspkind.nvim",
+      "saadparwaiz1/cmp_luasnip",
+      "L3MON4D3/LuaSnip",
+    },
+  },
 
   -- Markdown support
-  use 'godlygeek/tabular'
-  use 'plasticboy/vim-markdown'
+  {
+    "plasticboy/vim-markdown",
+    dependencies = { "godlygeek/tabular" },
+  },
 
   -- Clojure
-  -- use 'Olical/conjure'
+  -- { "Olical/conjure" },
 
   -- Scala
-  use 'scalameta/nvim-metals'
+  {
+    "scalameta/nvim-metals",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "neovim/nvim-lspconfig",
+    },
+  },
 
   -- Log highlighting
-  use 'mtdl9/vim-log-highlighting'
-end)
+  { "mtdl9/vim-log-highlighting" },
+})
