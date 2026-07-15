@@ -1,21 +1,11 @@
-set vim-surround
-
-set autoindent
-set showmatch
 set hlsearch
 set incsearch
 set ignorecase
 set smartcase
-set ruler
-set pastetoggle=<F10>
-set ttimeoutlen=10
-set mouse=a
-" set number relativenumber
 set number
 
 " Turn off noisy system sounds
 set visualbell
-set noerrorbells
 
 " remap enter to column selection mode to ctrl-q
 nnoremap <c-q> <c-v>
@@ -73,7 +63,12 @@ nnoremap ,gh :action TypeHierarchy<CR>
 
 " Popups
 nnoremap gm :action FileStructurePopup<CR>
-nnoremap gf :action ParameterInfo<CR>
+" nnoremap gf :action ParameterInfo<CR>
+
+" Project view
+nnoremap gf :action ActivateProjectToolWindow<CR>
+nnoremap ,gf :action SelectInProjectView<CR>
+
 
 " Debugging
 nnoremap gb :action ToggleLineBreakpoint<CR>
@@ -105,11 +100,11 @@ nnoremap `8 :action GotoBookmark8<CR>
 nnoremap `9 :action GotoBookmark9<CR>
 
 " Replace all tabs in current line
-nnoremap ,gt :s/\t/    /g<CR>
+ nnoremap ,gx :s/\t/    /g<CR>
 " Replace all 4-whitespaces with tabs in current line
 nnoremap ,gm :s/    /\t/g<CR>
 
 " Split line by symbol ','
-nnoremap ,gs f,lxi<CR>l
+nnoremap ,gs f,lxi<CR>l
 " Insert Arrange-Act-Assert
 nnoremap ,gr a// arrange<CR><CR>// act<CR><CR>// assert<ESC>
