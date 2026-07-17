@@ -2,3 +2,4 @@
 .lsp/
 .config/nvim/plugin/packer_compiled.lua
 .config/nvim/lua/.luarc.json
+lazy-lock.json
